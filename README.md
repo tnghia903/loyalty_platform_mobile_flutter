@@ -1,16 +1,24 @@
 # loyalty_platform_mobile_flutter
 
-A new Flutter project.
+This project aims to create a loyalty platform for user.
+
+Author: **404NotFound** Team from FPTU with love ❤️!
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+When you cloned this project, run `flutter pub get` in your terminal to get packages.
 
-A few resources to get you started if this is your first Flutter project:
+## Workflow
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Definition of branches
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Branch `main` is the place where holds stable code.
+Branch `beta` is the place where holds codes which are needed to test.
+
+### Start to work
+
+When developers start to develop a new feature, create a new branch with `git checkout` command from [Jira](https://nghiatvtfpt.atlassian.net/jira/software/projects/SU2201/boards/1) (this includes the name of that feature).
+
+After developed, push your code to branch `beta` and inform QA/QC for testing your code.
+
+After testing phase complete, create **merge request** from your branch into `main` to deploy stable code.
