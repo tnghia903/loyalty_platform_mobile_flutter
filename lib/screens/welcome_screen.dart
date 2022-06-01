@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/register_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/widgets/buttons/primary_button.dart';
+import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -47,63 +49,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterScreen(),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(14),
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterScreen(),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(14),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                child: SecondaryButton(
+                  onPressed: () {},
+                  title: 'Login with Google',
+                  child: Image.asset(
+                    'assets/images/ic-google.webp',
+                    width: 40,
                   ),
                 ),
               ),
