@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/register_screen.dart';
-import 'package:loyalty_platform_mobile_flutter/widgets/buttons/primary_button.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -11,6 +13,32 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  // Future<void> _signInAnonymously() async {
+  //   try {
+  //     await FirebaseAuth.instance.signInAnonymously();
+  //   } catch (e) {
+  //     print(e); // TODO: show dialog with error
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +78,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: SecondaryButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    // Obtain shared preferences.
+                    FirebaseAuth.instance
+                        .authStateChanges()
+                        .listen((User? user) async {
+                      if (user == null) {
+                        signInWithGoogle();
+                        print('User is currently signed out!');
+                      } else {
+                        print(user.displayName);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => RegisterScreen(
+                              userDisplayName: user.displayName,
+                            ),
+                          ),
+                        );
+                      }
+                    });
+                  },
+                  // onPressed: _signInAnonymously,
                   title: 'Login with Google',
                   child: Image.asset(
                     'assets/images/ic-google.webp',

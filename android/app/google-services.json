@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "70685944907",
+    "project_id": "loyalty-platform-dbb05",
+    "storage_bucket": "loyalty-platform-dbb05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70685944907:android:cca447e5eb4c887d6c31ce",
+        "android_client_info": {
+          "package_name": "com.example.loyalty_platform_mobile_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70685944907-opdmb4cpcbkpivcjlbj03q1ks8urlhqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGOPwqa2vUmbeDDu_eswfBrMttY1DhHwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70685944907-opdmb4cpcbkpivcjlbj03q1ks8urlhqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "70685944907-dl4fsrfta31bolmbnhjfafu9piq7krkc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loyaltyPlatformMobileFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
