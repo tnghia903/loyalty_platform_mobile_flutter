@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 
 void main() {
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Loyalty platform app',
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: RootApp(),
+      //WelcomeScreen(),
     );
   }
 }

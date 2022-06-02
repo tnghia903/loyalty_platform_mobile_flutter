@@ -61,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialStateProperty.all<Color>(Colors.purple),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
+                        borderRadius: BorderRadius.circular(18),
                       ),
                     ),
                   ),
@@ -94,7 +94,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialStateProperty.all<Color>(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
+                        borderRadius: BorderRadius.circular(18),
                       ),
                     ),
                   ),
