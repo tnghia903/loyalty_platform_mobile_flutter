@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class _RootAppState extends State<RootApp> {
       index: pageIndex,
       children: [
         HomeScreen(),
+        NotificationScreen(),
       ],
     );
   }
