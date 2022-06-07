@@ -98,63 +98,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       }
                     });
                   },
-<<<<<<< HEAD
                   // onPressed: _signInAnonymously,
                   title: 'Login with Google',
                   child: Image.asset(
                     'assets/images/ic-google.webp',
                     width: 40,
-=======
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(14),
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterScreen(),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(14),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(fontSize: 16),
-                    ),
->>>>>>> HomeScreen
                   ),
                 ),
               ),
