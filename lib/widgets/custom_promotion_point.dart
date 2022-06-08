@@ -27,13 +27,13 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
     return Container(
       width: MediaQuery.of(context).size.width * .8,
       alignment: Alignment.topCenter,
-      padding: EdgeInsets.all(7.0),
+      padding: const EdgeInsets.all(7.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(17),
         boxShadow: [
           BoxShadow(
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
               blurRadius: 2,
               color: Colors.black26.withOpacity(0.3))
         ],
@@ -49,7 +49,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                 fit: BoxFit.fill,
               )),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Container(
@@ -58,14 +58,14 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
             widget.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 17.0,
               fontWeight: FontWeight.w700,
             ),
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -76,12 +76,12 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                 Text(
                   widget.duration,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 13.0,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -96,7 +96,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Container(
@@ -106,8 +106,8 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                         color: Colors.purple,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 6, top: 1),
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 6, top: 1),
                         child: Text(
                           'P',
                           style: TextStyle(
