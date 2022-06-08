@@ -19,11 +19,11 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width * .6,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(17)),
+        borderRadius: const BorderRadius.all(Radius.circular(17)),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-              offset: Offset(0, 10),
+              offset: const Offset(0, 10),
               blurRadius: 20,
               color: Colors.black26.withOpacity(0.3))
         ],
@@ -40,7 +40,7 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
                   fit: BoxFit.fill,
                 )),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             children: [
               Container(
@@ -51,7 +51,7 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
                     widget.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w700,
                     ),

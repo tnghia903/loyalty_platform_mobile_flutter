@@ -17,7 +17,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.width * .8,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Column(
@@ -27,7 +27,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width * .6,
                         child: Image.asset(
-                          this.items.thumbNail,
+                          items.thumbNail,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -35,21 +35,19 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                         width: 40,
                         top: 10,
                         left: 10,
-                        child: Container(
-                          child: RawMaterialButton(
-                              shape: CircleBorder(),
-                              fillColor: Colors.black.withOpacity(0.25),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
-                              )),
-                        ),
+                        child: RawMaterialButton(
+                            shape: const CircleBorder(),
+                            fillColor: Colors.black.withOpacity(0.25),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            )),
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Container(
@@ -57,11 +55,11 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
-                          this.items.title,
+                          items.title,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textDirection: TextDirection.ltr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
                           ),
@@ -71,7 +69,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
@@ -82,7 +80,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 20, left: 10),
                       child: Row(
-                        children: [
+                        children: const [
                           Text(
                             'Nội Dung',
                             textDirection: TextDirection.ltr,
@@ -94,16 +92,17 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Text(this.items.description,
+                      child: Text(items.description,
                           textAlign: TextAlign.justify,
                           overflow: TextOverflow.clip,
                           textDirection: TextDirection.ltr,
-                          style: TextStyle(fontSize: 15, color: Colors.black)),
+                          style: const TextStyle(
+                              fontSize: 15, color: Colors.black)),
                     ),
                   ],
                 ),

@@ -8,11 +8,6 @@ class CustomFunctionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List icon = [
-      Icons.near_me_sharp,
-      Icons.restaurant,
-      Icons.card_giftcard,
-    ];
     List tilte = [
       "Tìm Nhà Hàng",
       "Thương Hiệu",
@@ -22,18 +17,18 @@ class CustomFunctionBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 130,
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
+          gradient: const LinearGradient(colors: [
             Colors.purple,
             Color.fromARGB(255, 222, 159, 233),
           ]),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
           boxShadow: [
             BoxShadow(
               spreadRadius: 1,
               blurRadius: 30,
-              color: Color.fromARGB(255, 222, 159, 233).withOpacity(0.7),
+              color: const Color.fromARGB(255, 222, 159, 233).withOpacity(0.7),
             )
           ]),
       child: Padding(
@@ -55,19 +50,20 @@ class CustomFunctionBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: [
                                 BoxShadow(
-                                    offset: Offset(0, 10),
+                                    offset: const Offset(0, 10),
                                     blurRadius: 20,
                                     color: Colors.black26.withOpacity(0.3))
                               ]),
                           child: IconButton(
-                            icon: Icon(Icons.near_me_sharp),
+                            icon: const Icon(Icons.near_me_sharp),
                             iconSize: 35,
                             color: Colors.purple[900],
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen())),
+                                    builder: (context) =>
+                                        (const BrandsListScreen())),
                               );
                             },
                           )),
@@ -82,12 +78,12 @@ class CustomFunctionBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: [
                                 BoxShadow(
-                                    offset: Offset(0, 10),
+                                    offset: const Offset(0, 10),
                                     blurRadius: 20,
                                     color: Colors.black26.withOpacity(0.3))
                               ]),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.restaurant,
                             ),
                             iconSize: 35,
@@ -96,7 +92,8 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen())),
+                                    builder: (context) =>
+                                        (const BrandsListScreen())),
                               );
                             },
                           )),
@@ -111,12 +108,12 @@ class CustomFunctionBar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: [
                                 BoxShadow(
-                                    offset: Offset(0, 10),
+                                    offset: const Offset(0, 10),
                                     blurRadius: 20,
                                     color: Colors.black26.withOpacity(0.3))
                               ]),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.card_giftcard,
                             ),
                             iconSize: 35,
@@ -125,14 +122,15 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen())),
+                                    builder: (context) =>
+                                        (const BrandsListScreen())),
                               );
                             },
                           )),
                     )
                   ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 7,
             ),
             Padding(
@@ -143,7 +141,7 @@ class CustomFunctionBar extends StatelessWidget {
                     tilte.length,
                     (index) => Text(
                       tilte[index],
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 13,
                           color: Colors.white,
                           fontWeight: FontWeight.w700),

@@ -20,8 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(100),
                         child: Image.asset('assets/images/profilepicture.png'),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Column(
@@ -63,25 +62,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 110,
                       height: 40,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
+                          gradient: const LinearGradient(colors: [
                             Colors.purple,
                             Color.fromARGB(255, 222, 159, 233),
                           ]),
-                          borderRadius: BorderRadius.all(Radius.circular(17)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(17)),
                           boxShadow: [
                             BoxShadow(
-                              offset: Offset(10, 10),
+                              offset: const Offset(10, 10),
                               blurRadius: 20,
-                              color: Color.fromARGB(255, 222, 159, 233)
+                              color: const Color.fromARGB(255, 222, 159, 233)
                                   .withOpacity(0.3),
                             )
                           ]),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 17,
                           ),
-                          Text(
+                          const Text(
                             "2000",
                             style: TextStyle(
                               fontSize: 20,
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Container(
@@ -99,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, top: 4, bottom: 2),
+                            child: const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 8, top: 4, bottom: 2),
                               child: Text(
                                 'P',
                                 style: TextStyle(
@@ -117,14 +117,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15),
+            const Padding(
+              padding: EdgeInsets.only(right: 15, left: 15),
               child: CustomFunctionBar(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Padding(
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SingleChildScrollView(
@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Padding(
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Column(
@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-      )),
+      ),
     ));
   }
 }

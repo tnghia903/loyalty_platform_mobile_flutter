@@ -16,11 +16,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return SafeArea(
         child: Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.purple[400],
-          title: Text(
+          title: const Text(
             'Thông Báo',
           ),
           centerTitle: true,
@@ -50,7 +50,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               BoxShadow(
                 spreadRadius: 1,
                 blurRadius: 100,
-                color: Color.fromARGB(255, 222, 159, 233).withOpacity(0.7),
+                color:
+                    const Color.fromARGB(255, 222, 159, 233).withOpacity(0.7),
               )
             ],
             border:
@@ -85,7 +86,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         items[index],
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 15, color: Colors.black),
                       ),
                     ),
                   ),

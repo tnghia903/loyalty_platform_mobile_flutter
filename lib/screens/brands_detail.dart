@@ -29,7 +29,7 @@ class BrandDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                             blurRadius: 2,
                             color: Colors.black26.withOpacity(0.3))
                       ],
@@ -42,7 +42,7 @@ class BrandDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Padding(
@@ -51,7 +51,7 @@ class BrandDetailScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Text(
                   this.items.description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                   ),
                   overflow: TextOverflow.clip,

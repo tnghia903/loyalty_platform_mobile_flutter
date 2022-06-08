@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/object/brand.dart';
 

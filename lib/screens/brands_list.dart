@@ -7,14 +7,14 @@ import 'package:loyalty_platform_mobile_flutter/screens/brands_detail.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/brand_box.dart';
 
 class BrandsListScreen extends StatelessWidget {
-  BrandsListScreen({Key? key}) : super(key: key);
+  const BrandsListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final items = getBrands();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Thương hiệu'),
+          title: const Text('Thương hiệu'),
           elevation: 0,
           backgroundColor: Colors.purple[400],
           centerTitle: true,
