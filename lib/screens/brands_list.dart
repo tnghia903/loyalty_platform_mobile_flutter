@@ -7,11 +7,11 @@ import 'package:loyalty_platform_mobile_flutter/screens/brands_detail.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/brand_box.dart';
 
 class BrandsListScreen extends StatelessWidget {
-  BrandsListScreen({Key? key, required this.title}) : super(key: key);
-  final String title;
-  final items = getBrands();
+  BrandsListScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final items = getBrands();
     return Scaffold(
         appBar: AppBar(
           title: Text('Thương hiệu'),

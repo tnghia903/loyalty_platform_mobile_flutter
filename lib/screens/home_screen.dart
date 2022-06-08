@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
 import '../widgets/custom_functionbar.dart';
@@ -183,14 +184,24 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             Column(
-              children: List.generate(PromotionNewsJson.length, (index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                  child: CustomPromotionNew(
-                    thumbNail: PromotionNewsJson[index]['image'],
-                    title: PromotionNewsJson[index]['title'],
+              children: List.generate(getPromotion().length, (index) {
+                return GestureDetector(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                    child: CustomPromotionNew(
+                      thumbNail: getPromotion()[index].thumbNail,
+                      title: getPromotion()[index].title,
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PromotionNewsDetailScreen(
+                              items: getPromotion()[index]),
+                        ));
+                  },
                 );
               }),
             )

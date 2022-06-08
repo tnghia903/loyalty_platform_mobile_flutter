@@ -67,9 +67,7 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen(
-                                          title: 'Thương hiệu',
-                                        ))),
+                                    builder: (context) => (BrandsListScreen())),
                               );
                             },
                           )),
@@ -98,9 +96,7 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen(
-                                          title: 'Thương hiệu',
-                                        ))),
+                                    builder: (context) => (BrandsListScreen())),
                               );
                             },
                           )),
@@ -129,9 +125,7 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => (BrandsListScreen(
-                                          title: 'Thương hiệu',
-                                        ))),
+                                    builder: (context) => (BrandsListScreen())),
                               );
                             },
                           )),
