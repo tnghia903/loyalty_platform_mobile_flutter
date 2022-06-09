@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/register_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -90,9 +91,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         print(user.displayName);
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => RegisterScreen(
-                              userDisplayName: user.displayName,
-                            ),
+                            builder: (context) => const RootApp(),
                           ),
                         );
                       }

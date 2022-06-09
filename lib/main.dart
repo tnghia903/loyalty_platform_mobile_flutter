@@ -10,16 +10,22 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  static const bool isSignedIn = false;
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Loyalty platform app',
       debugShowCheckedModeBanner: false,
-      home: RootApp(),
-      //WelcomeScreen(),
+      home: WelcomeScreen(),
+      // RootApp(),
     );
   }
 }
