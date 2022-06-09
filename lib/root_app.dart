@@ -40,23 +40,28 @@ class _RootAppState extends State<RootApp> {
         /// Home
         SalomonBottomBarItem(
           icon: const Icon(Icons.home),
-          title: const Text("Home"),
+          title: const Text("Trang chủ"),
           selectedColor: Colors.purple,
         ),
 
-        /// Likes
+        /// Wallet
+        SalomonBottomBarItem(
+          icon: const Icon(Icons.account_balance_wallet),
+          title: const Text("Ví tiền"),
+          selectedColor: Colors.purple,
+        ),
 
+        ///Notification
         SalomonBottomBarItem(
           icon: const Icon(Icons.notifications),
-          title: const Text("Notifications"),
+          title: const Text("Thông báo"),
           selectedColor: Colors.purple,
         ),
 
-        /// Search
         /// Profile
         SalomonBottomBarItem(
           icon: const Icon(Icons.person),
-          title: const Text("Profile"),
+          title: const Text("Tài khoản"),
           selectedColor: Colors.purple,
         ),
       ],

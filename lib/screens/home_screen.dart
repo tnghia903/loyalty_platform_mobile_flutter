@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
 import '../widgets/custom_functionbar.dart';
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15, top: 20),
+              padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
               child: Row(
                 children: [
                   Container(
@@ -35,25 +36,38 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Image.asset('assets/images/profilepicture.png'),
                       )),
                   const SizedBox(
-                    width: 5,
+                    width: 10,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     textDirection: TextDirection.ltr,
                     children: [
                       Text(
-                        "Hello ABC",
+                        "Hoàng A",
                         style: TextStyle(
                             fontSize: 22,
                             color: Colors.purple[800],
                             fontWeight: FontWeight.w700),
                       ),
-                      Text(
-                        "Silver Member ",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.purple[800],
-                            fontWeight: FontWeight.w500),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Container(
+                        width: 125,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Thành viên bạc ",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 44, 33, 58),
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -121,14 +135,14 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 30,
             ),
             const Padding(
-              padding: EdgeInsets.only(right: 15, left: 15),
+              padding: EdgeInsets.only(right: 20, left: 20),
               child: CustomFunctionBar(),
             ),
             const SizedBox(
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15),
+              padding: const EdgeInsets.only(right: 20, left: 20),
               child: Row(
                 children: [
                   Text(
@@ -147,17 +161,34 @@ class _HomeScreenState extends State<HomeScreen> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
-                padding: const EdgeInsets.only(left: 15, bottom: 5),
+                padding: const EdgeInsets.only(left: 20, bottom: 5),
                 child: Row(
-                  children: List.generate(PromotionPointJson.length, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: CustomPromotionPoint(
-                        thumbNail: PromotionPointJson[index]['image'],
-                        title: PromotionPointJson[index]['title'],
-                        duration: PromotionPointJson[index]['duration'],
-                        point: PromotionPointJson[index]['point'],
+                  children:
+                      List.generate(getPromotionPointVoucher().length, (index) {
+                    return GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: CustomPromotionPoint(
+                          thumbNail:
+                              getPromotionPointVoucher()[index].thumbNail,
+                          title: getPromotionPointVoucher()[index].title,
+                          duration: getPromotionPointVoucher()[index].duration,
+                          point: getPromotionPointVoucher()[index].point,
+                        ),
                       ),
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20),
+                              ),
+                            ),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            builder: (context) =>
+                                PromotionPointVoucherDetailScreen(
+                                    items: getPromotionPointVoucher()[index]));
+                      },
                     );
                   }),
                 ),
@@ -167,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15),
+              padding: const EdgeInsets.only(right: 20, left: 20),
               child: Row(
                 children: [
                   Text(
@@ -188,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return GestureDetector(
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                        const EdgeInsets.only(bottom: 20, left: 20, right: 20),
                     child: CustomPromotionNew(
                       thumbNail: getPromotion()[index].thumbNail,
                       title: getPromotion()[index].title,

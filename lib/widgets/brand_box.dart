@@ -11,7 +11,7 @@ class BrandBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, bottom: 15, right: 10, left: 10),
+      padding: const EdgeInsets.only(top: 15, bottom: 15, right: 20, left: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.width * .3,

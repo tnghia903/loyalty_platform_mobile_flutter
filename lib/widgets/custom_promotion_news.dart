@@ -34,31 +34,29 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * .45,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    topRight: Radius.circular(17)),
                 child: Image.asset(
                   widget.thumbNail,
                   fit: BoxFit.fill,
                 )),
           ),
-          const SizedBox(height: 15),
-          Row(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    widget.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+          const SizedBox(height: 10),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Text(
+                widget.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
