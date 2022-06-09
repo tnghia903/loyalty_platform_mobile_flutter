@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     return const MaterialApp(
       title: 'Loyalty platform app',
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: isSignedIn ? RootApp() : WelcomeScreen(),
       // RootApp(),
     );
   }
