@@ -89,6 +89,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         print('User is currently signed out!');
                       } else {
                         print(user.displayName);
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('username', user.displayName.toString());
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const RootApp(),

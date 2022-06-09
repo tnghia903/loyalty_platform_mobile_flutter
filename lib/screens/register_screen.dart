@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterScreen extends StatefulWidget {
   final String? userDisplayName;
@@ -11,6 +13,15 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  static String _username = "";
+
+  Future<void> _getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _username = prefs.getString("username") ?? "my friend";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,23 +32,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: GestureDetector(
-                    onTap: () async {
-                      await FirebaseAuth.instance.signOut();
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 32,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
                 Container(
                   width: 200,
                   height: 200,
@@ -52,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 Text(
                   // 'Registration',
-                  'Welcome, ${widget.userDisplayName}',
+                  'Welcome, $_username',
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -119,7 +113,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           // },
                           onPressed: () async {
                             await FirebaseAuth.instance.signOut();
-                            Navigator.pop(context);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const WelcomeScreen(),
+                              ),
+                            );
                           },
                           style: ButtonStyle(
                             foregroundColor:

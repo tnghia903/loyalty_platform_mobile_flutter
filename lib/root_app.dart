@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/register_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -29,6 +30,7 @@ class _RootAppState extends State<RootApp> {
       children: [
         const HomeScreen(),
         const NotificationScreen(),
+        const RegisterScreen(),
       ],
     );
   }
