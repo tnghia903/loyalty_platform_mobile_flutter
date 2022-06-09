@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/text_field_otp.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
@@ -84,7 +86,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const OtpScreen()));
+                            builder: (context) => const RootApp()));
                       },
                       style: ButtonStyle(
                         foregroundColor:

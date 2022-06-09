@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>70685944907-dl4fsrfta31bolmbnhjfafu9piq7krkc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.70685944907-dl4fsrfta31bolmbnhjfafu9piq7krkc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDpQkjLZVqiiWKmmVph6OO7Db-5_BdWAZE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>70685944907</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.loyaltyPlatformMobileFlutter</string>
+	<key>PROJECT_ID</key>
+	<string>loyalty-platform-dbb05</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loyalty-platform-dbb05.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:70685944907:ios:77c44d52cde2ceb46c31ce</string>
+	<key>DATABASE_URL</key>
+	<string>https://loyalty-platform-dbb05-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
