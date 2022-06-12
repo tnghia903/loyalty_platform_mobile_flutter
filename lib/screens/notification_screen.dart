@@ -19,6 +19,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.checklist_rounded,
+                    size: 30,
+                  )),
+            )
+          ],
           elevation: 0,
           backgroundColor: Colors.purple[400],
           title: const Text(
@@ -34,16 +45,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 
   Widget getBody() {
-    final Notification items;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
               children: List.generate(getNotification().length, (index) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(bottom: 15),
               child: Container(
                 width: 360,
                 height: 100,
@@ -62,58 +72,58 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     ),
                     borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(),
-                          child: Image.asset(
-                            getNotification()[index].icon,
-                            scale: 4,
-                          ),
+                        Image.asset(
+                          getNotification()[index].icon,
+                          scale: 4,
                         ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  child: Text(
-                                    getNotification()[index]
-                                        .tilte
-                                        .toUpperCase(),
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 260,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      getNotification()[index]
+                                          .tilte
+                                          .toUpperCase(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      getNotification()[index].datetime,
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Container(
-                                  child: Text(
-                                    getNotification()[index].datetime,
-                                    overflow: TextOverflow.clip,
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Text(
-                                getNotification()[index].description,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 15, color: Colors.black),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                width: 260,
+                                child: Text(
+                                  getNotification()[index].description,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     )),

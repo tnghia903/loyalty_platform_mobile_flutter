@@ -5,6 +5,36 @@ List<Notification> getNotification() {
 
   items.add(Notification(
       'assets/images/IconNotification.png',
+      'Tặng bạn thân quý 50k ',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
+      'Chào bạn mới ',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
+      'Tặng bạn thân quý 50k',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
+      'Tặng bạn thân quý 50k',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
+      'Tặng bạn thân quý 50k',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
+      'Tặng bạn thân quý 50k',
+      'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
+      '05/09'));
+  items.add(Notification(
+      'assets/images/IconNotification.png',
       'Tặng bạn thân quý 50k',
       'Bạn gì ơi nghỉ ngơi uống nước ăn bánh nha. Tặng bạn 50k để gọi món yêu thích. Mở liền app để nhận ngay ưu đãi này nào.',
       '05/09'));
