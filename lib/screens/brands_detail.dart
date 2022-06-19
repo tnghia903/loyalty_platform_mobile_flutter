@@ -10,6 +10,11 @@ class BrandDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new_rounded)),
         title: Text('Passio'),
         elevation: 0,
         backgroundColor: Colors.lightGreen.shade600,
