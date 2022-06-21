@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
