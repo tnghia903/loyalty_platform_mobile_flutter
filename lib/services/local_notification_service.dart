@@ -11,7 +11,12 @@ class LocalNotificationService {
         // ignore: prefer_const_constructors
         InitializationSettings(
             // ignore: prefer_const_constructors
-            android: AndroidInitializationSettings('@mipmap/ic_launcher'));
+            android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+            iOS: const IOSInitializationSettings(
+              requestSoundPermission: false,
+              requestBadgePermission: false,
+              requestAlertPermission: false,
+            ));
 
     _notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: ((String? route) async {
@@ -26,9 +31,11 @@ class LocalNotificationService {
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
       const NotificationDetails notificationDetails = NotificationDetails(
-          android: AndroidNotificationDetails(
-              "loyaltyprogram", "loyaltyprogram channel",
-              importance: Importance.max, priority: Priority.high));
+        android: AndroidNotificationDetails(
+            "loyaltyprogram", "loyaltyprogram channel",
+            importance: Importance.max, priority: Priority.high),
+        iOS: IOSNotificationDetails(),
+      );
 
       await _notificationsPlugin.show(
         id,

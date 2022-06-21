@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +32,16 @@ class _RootAppState extends State<RootApp> {
 
     LocalNotificationService.initialize(context);
 
+    FirebaseMessaging.instance.requestPermission().then((value) {
+      print(value);
+    });
+    FirebaseMessaging.instance.getToken().then((token) {
+      print(token);
+    });
+    FirebaseMessaging.instance.getAPNSToken().then((APNStoken) {
+      print(APNStoken);
+    });
+
     ///gives you the message on which user tap
     ///and it opened the app from terminated state
     FirebaseMessaging.instance.getInitialMessage().then((message) {
@@ -42,9 +54,7 @@ class _RootAppState extends State<RootApp> {
     ///foreground
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {
-        // ignore: avoid_print
         print(message.notification!.body);
-        // ignore: avoid_print
         print(message.notification!.title);
       }
 
