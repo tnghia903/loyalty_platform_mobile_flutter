@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/local_notification_service.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class RootApp extends StatefulWidget {

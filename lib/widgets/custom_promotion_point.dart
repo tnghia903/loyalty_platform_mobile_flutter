@@ -129,7 +129,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                 child: Text(
                   'Đổi ngay',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
