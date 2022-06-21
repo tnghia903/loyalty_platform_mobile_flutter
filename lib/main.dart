@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         "notification": (_) => NotificationScreen(),
       },
       //WelcomeScreen(),
-      home: RootApp(),
+      home: isSignedIn ? RootApp() : WelcomeScreen(),
       // RootApp(),
     );
   }
