@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomPromotionPoint extends StatefulWidget {
   const CustomPromotionPoint(
@@ -39,7 +36,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
         ],
       ),
       child: Column(children: [
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.width * .45,
           width: MediaQuery.of(context).size.width,
           child: ClipRRect(
@@ -52,7 +49,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
         const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Text(
             widget.title,
@@ -122,21 +119,21 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                 ),
               ],
             ),
-            Container(
+            SizedBox(
               width: 110,
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text(
-                  'Đổi ngay',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
                     onPrimary: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16))),
+                child: const Text(
+                  'Đổi ngay',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
               ),
             )
           ],

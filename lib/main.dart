@@ -5,8 +5,8 @@ import 'package:loyalty_platform_mobile_flutter/backgroundHandler.dart';
 import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
-import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
-import 'package:loyalty_platform_mobile_flutter/services/local_notification_service.dart';
+// import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
+// import 'package:loyalty_platform_mobile_flutter/services/local_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,10 +31,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
 
       routes: {
-        "notification": (_) => NotificationScreen(),
+        "notification": (_) => const NotificationScreen(),
+        "root": (_) => const RootApp(),
       },
       //WelcomeScreen(),
-      home: RootApp(),
+      home: const RootApp(),
       // RootApp(),
     );
   }

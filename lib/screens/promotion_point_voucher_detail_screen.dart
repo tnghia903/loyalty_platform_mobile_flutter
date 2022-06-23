@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion_point_vourcher.dart';
 
 class PromotionPointVoucherDetailScreen extends StatelessWidget {
@@ -14,6 +11,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            backgroundColor: Colors.purple,
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -39,7 +37,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
                 background: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
                     child: Image.asset(
@@ -79,7 +77,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Container(
+                  child: SizedBox(
                     width: 250,
                     height: 45,
                     child: ElevatedButton(
@@ -88,7 +86,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                           onPrimary: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16))),
-                      child: Text('Đổi ngay'),
+                      child: const Text('Đổi ngay'),
                       onPressed: () {},
                     ),
                   ),

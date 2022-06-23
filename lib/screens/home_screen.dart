@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
@@ -31,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                       width: 50,
                       height: 50,
                       child: ClipRRect(
@@ -52,21 +51,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.purple[800],
                             fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 2,
                       ),
                       Container(
-                        width: 125,
-                        height: 25,
                         decoration: BoxDecoration(
                           color: Colors.grey[400],
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 4, bottom: 2, top: 2),
                           child: Text(
-                            "Thành viên bạc ",
+                            "Thành viên bạc",
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 12,
                                 color: Color.fromARGB(255, 44, 33, 58),
                                 fontWeight: FontWeight.w500),
                           ),

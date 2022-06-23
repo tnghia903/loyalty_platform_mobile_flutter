@@ -73,9 +73,11 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     return IndexedStack(
       index: pageIndex,
-      children: [
-        const HomeScreen(),
-        const NotificationScreen(),
+      children: const [
+        HomeScreen(),
+        NotificationScreen(),
+        NotificationScreen(),
+        NotificationScreen(),
       ],
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/brands_detail.dart';
 
