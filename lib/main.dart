@@ -31,10 +31,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
 
       routes: {
-        "notification": (_) => NotificationScreen(),
+        "notification": (_) => const NotificationScreen(),
       },
       //WelcomeScreen(),
-      home: isSignedIn ? RootApp() : WelcomeScreen(),
+      home: isSignedIn ? const RootApp() : const WelcomeScreen(),
       // RootApp(),
     );
   }
