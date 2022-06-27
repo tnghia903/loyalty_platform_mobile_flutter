@@ -61,6 +61,7 @@ class _RootAppState extends State<RootApp> {
 
       LocalNotificationService.display(message);
     });
+  
 
     ///when the app is in background but opened and user taps
     ///on the notification
