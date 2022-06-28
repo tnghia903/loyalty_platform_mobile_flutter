@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/wallet_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/local_notification_service.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -73,9 +75,11 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     return IndexedStack(
       index: pageIndex,
-      children: [
-        const HomeScreen(),
-        const NotificationScreen(),
+      children: const [
+        HomeScreen(),
+        WalletScreen(),
+        NotificationScreen(),
+        ProfileScreen(userDisplayName: 'Hoàng A',)
       ],
     );
   }

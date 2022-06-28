@@ -134,7 +134,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         signInWithGoogle();
                         print('User is currently signed out!');
                       } else {
-                        print(user.displayName);
+                        print(user);
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const RootApp(),

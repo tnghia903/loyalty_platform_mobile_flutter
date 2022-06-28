@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
@@ -18,6 +19,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final FirebaseAuth auth = FirebaseAuth.instance;
+final User? user = auth.currentUser;
+final name = user?.displayName;
+final avatarUrl = user?.photoURL;
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -31,12 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                       width: 50,
                       height: 50,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/images/profilepicture.png'),
+                        child: Image.network(avatarUrl!),
                       )),
                   const SizedBox(
                     width: 10,
@@ -45,12 +51,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     textDirection: TextDirection.ltr,
                     children: [
-                      Text(
-                        "Hoàng A",
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.purple[800],
-                            fontWeight: FontWeight.w700),
+                      SizedBox(
+                        width: 160,
+                        child: Text(
+                          name!,
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.purple[800],
+                              fontWeight: FontWeight.w700),
+                        ),
                       ),
                       SizedBox(
                         height: 2,
