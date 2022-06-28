@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
-import 'package:loyalty_platform_mobile_flutter/screens/register_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/widgets/buttons/primary_button.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -88,7 +89,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         signInWithGoogle();
                         print('User is currently signed out!');
                       } else {
-                        print(user.displayName);
+                        print(user.uid);
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const RootApp(),
@@ -103,6 +104,51 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     'assets/images/ic-google.webp',
                     width: 40,
                   ),
+                ),
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              const Text(
+                'Or',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 58,
+                child: PrimaryButton(
+                  onPressed: () async {
+                    // Obtain shared preferences.
+                    FirebaseAuth.instance
+                        .authStateChanges()
+                        .listen((User? user) async {
+                      if (user == null) {
+                        signInWithGoogle();
+                        print('User is currently signed out!');
+                      } else {
+                        print(user.displayName);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const RootApp(),
+                          ),
+                        );
+                      }
+                    });
+                  },
+                  // onPressed: _signInAnonymously,
+                  title: 'Register with Google',
+                  // child: Image.asset(
+                  //   'assets/images/ic-google.webp',
+                  //   width: 40,
+                  // ),
                 ),
               ),
             ],

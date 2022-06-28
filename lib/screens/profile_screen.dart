@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   final String? userDisplayName;
 
-  const RegisterScreen({Key? key, this.userDisplayName}) : super(key: key);
+  const ProfileScreen({Key? key, this.userDisplayName}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
