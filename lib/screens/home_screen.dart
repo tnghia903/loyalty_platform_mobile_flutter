@@ -60,7 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 2, top: 2),
+                          padding: EdgeInsets.only(
+                              left: 4, bottom: 2, top: 2, right: 4),
                           child: Text(
                             "Thành viên bạc",
                             style: TextStyle(
