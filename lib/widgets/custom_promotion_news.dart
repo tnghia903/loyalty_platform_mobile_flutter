@@ -9,7 +9,7 @@ class CustomPromotionNew extends StatefulWidget {
   final String title;
 
   @override
-  _CustomPromotionNewState createState() => _CustomPromotionNewState();
+  State<CustomPromotionNew> createState() => _CustomPromotionNewState();
 }
 
 class _CustomPromotionNewState extends State<CustomPromotionNew> {
@@ -30,11 +30,11 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
       ),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * .45,
             child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(17),
                     topRight: Radius.circular(17)),
                 child: Image.asset(
@@ -43,7 +43,7 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
                 )),
           ),
           const SizedBox(height: 10),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),

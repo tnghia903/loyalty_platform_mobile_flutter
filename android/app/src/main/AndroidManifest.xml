@@ -2,7 +2,7 @@
     package="com.example.loyalty_platform_mobile_flutter">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="loyalty_platform_mobile_flutter"
+        android:label="Loyalty App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

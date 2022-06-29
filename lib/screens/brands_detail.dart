@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:loyalty_platform_mobile_flutter/object/brand.dart';
 
 class BrandDetailScreen extends StatelessWidget {
   const BrandDetailScreen({Key? key}) : super(key: key);
@@ -14,8 +11,8 @@ class BrandDetailScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_new_rounded)),
-        title: Text('Passio'),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+        title: const Text('Passio'),
         elevation: 0,
         backgroundColor: Colors.lightGreen.shade600,
         centerTitle: true,
@@ -51,7 +48,7 @@ class BrandDetailScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Container(
+              child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 200,
                   child: ClipRRect(
@@ -66,11 +63,11 @@ class BrandDetailScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Text(
+                child: const Text(
                   'Passio Coffee là thương hiệu tiên phong trong phong cách “to go” – cafe mang đi tại Việt Nam. Trải qua hơn một thập kỷ hình thành và phát triển, Passio Coffee là lựa chọn lý tưởng của những “tín đồ cafe”. Quyến rũ nhưng cũng rất tao nhã, truyền thống nhưng không kém phần hiện đại, Passio Coffee mong muốn khách hàng sẽ khám phá được sự liên kết đặc biệt trong từng nguyên liệu đã làm nên ly thức uống tuyệt hảo chứ không đơn thuần chỉ là thưởng thức một sản phẩm cafe.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                   ),
                   overflow: TextOverflow.clip,
