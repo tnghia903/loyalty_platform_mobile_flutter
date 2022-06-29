@@ -6,12 +6,8 @@ import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 
-
-
-
 import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +33,9 @@ class _MyAppState extends State<MyApp> {
 
       routes: {
         "notification": (_) => const NotificationScreen(),
-
         "root": (_) => const RootApp(),
       },
-    
 
-      },
       //WelcomeScreen(),
       home: isSignedIn ? const RootApp() : const WelcomeScreen(),
 
