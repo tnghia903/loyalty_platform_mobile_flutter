@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 
 class PromotionNewsDetailScreen extends StatelessWidget {
@@ -23,7 +21,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(children: [
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width * .6,
                         child: Image.asset(
@@ -50,7 +48,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),

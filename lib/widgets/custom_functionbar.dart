@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/brands_detail.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/map_screen.dart';
 
 class CustomFunctionBar extends StatelessWidget {
   const CustomFunctionBar({Key? key}) : super(key: key);
@@ -61,8 +61,7 @@ class CustomFunctionBar extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        (const BrandDetailScreen())),
+                                    builder: (context) => (const MapScreen())),
                               );
                             },
                           )),

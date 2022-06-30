@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textDirection: TextDirection.ltr,
                     children: [
                       SizedBox(
-                        width: 160,
+                        width: MediaQuery.of(context).size.width * .4,
                         child: Text(
                           name!,
                           overflow: TextOverflow.fade,
@@ -64,21 +64,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.w700),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 2,
                       ),
                       Container(
-                        width: 125,
-                        height: 25,
                         decoration: BoxDecoration(
                           color: Colors.grey[400],
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                              left: 4, bottom: 2, top: 2, right: 4),
                           child: Text(
-                            "Thành viên bạc ",
+                            "Thành viên bạc",
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 12,
                                 color: Color.fromARGB(255, 44, 33, 58),
                                 fontWeight: FontWeight.w500),
                           ),

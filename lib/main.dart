@@ -5,8 +5,11 @@ import 'package:loyalty_platform_mobile_flutter/backgroundHandler.dart';
 import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
+
 import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/services/geolocator_services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,19 +26,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final locatorService = GeolocatorService();
   static const bool isSignedIn = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Loyalty platform app',
-      debugShowCheckedModeBanner: false,
+    return FutureProvider(
+      create: (context) => locatorService.getLocation(),
+      initialData: null,
+      child: MaterialApp(
+        title: 'Loyalty platform app',
+        debugShowCheckedModeBanner: false,
 
-      routes: {
-        "notification": (_) => const NotificationScreen(),
-      },
-      //WelcomeScreen(),
-      home: isSignedIn ? const RootApp() : const WelcomeScreen(),
-      // RootApp(),
+        routes: {
+          "notification": (_) => const NotificationScreen(),
+          "root": (_) => const RootApp(),
+        },
+
+        //WelcomeScreen(),
+        home: isSignedIn ? const RootApp() : const WelcomeScreen(),
+
+        // RootApp(),
+      ),
     );
   }
 }
