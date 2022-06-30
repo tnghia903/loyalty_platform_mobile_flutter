@@ -8,7 +8,6 @@ import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart
 import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/wallet_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/local_notification_service.dart';
-import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class RootApp extends StatefulWidget {
@@ -63,7 +62,6 @@ class _RootAppState extends State<RootApp> {
 
       LocalNotificationService.display(message);
     });
-  
 
     ///when the app is in background but opened and user taps
     ///on the notification

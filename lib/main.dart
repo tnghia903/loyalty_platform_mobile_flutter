@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/backgroundHandler.dart';
 import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/voucher_wallet.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/wallet_screen.dart';
 
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/geolocator_services.dart';
@@ -42,7 +45,8 @@ class _MyAppState extends State<MyApp> {
         },
 
         //WelcomeScreen(),
-        home: isSignedIn ? const RootApp() : const WelcomeScreen(),
+        // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
+        home: const VoucherWallet(),
 
         // RootApp(),
       ),

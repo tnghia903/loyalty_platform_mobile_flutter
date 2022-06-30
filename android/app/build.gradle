@@ -50,11 +50,7 @@ android {
         applicationId "com.example.loyalty_platform_mobile_flutter"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-<<<<<<< HEAD
         minSdkVersion 29
-=======
-        minSdkVersion 20
->>>>>>> cadd84f68ab258b0d37224e76345f43c3d620355
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
