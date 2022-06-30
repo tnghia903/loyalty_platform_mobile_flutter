@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.email),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(email!)
