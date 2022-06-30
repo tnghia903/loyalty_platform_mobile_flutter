@@ -6,7 +6,6 @@ import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 
-import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/geolocator_services.dart';
 import 'package:provider/provider.dart';
