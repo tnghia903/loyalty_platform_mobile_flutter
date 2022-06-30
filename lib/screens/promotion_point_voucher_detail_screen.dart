@@ -11,7 +11,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.transparent,
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -34,6 +34,10 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                     )),
               ),
             ],
+            floating: true,
+            pinned: true,
+            elevation: 0.0,
+            snap: false,
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
                 background: ClipRRect(
@@ -47,7 +51,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
               child: Container(
-            height: 300,
+            height: 400,
             color: Colors.white,
             child: Column(
               children: [

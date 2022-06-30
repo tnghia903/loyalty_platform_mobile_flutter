@@ -5,6 +5,6 @@ class GeolocatorService {
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
     return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.low);
   }
 }
