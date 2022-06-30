@@ -8,7 +8,7 @@ class VoucherWallet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     List<VoucherWalletObject> wallet = getListVocherWallet();
     return Scaffold(
@@ -59,8 +59,8 @@ class VoucherWallet extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.all(10),
-      height: size.height * 0.14,
-      width: size.width * 10,
+      height: size.height * .18,
+      width: size.width * .9,
       child: Row(
         children: [
           Container(
@@ -78,7 +78,7 @@ class VoucherWallet extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            width: size.width * 0.65,
+            width: size.width * .6,
             child: Column(
               children: [
                 Padding(

@@ -16,7 +16,10 @@ class WalletScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * .7,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
-                  color: Colors.purple,
+                  gradient: LinearGradient(colors: [
+                    Colors.purple,
+                    Color.fromARGB(255, 222, 159, 233),
+                  ]),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 40),
