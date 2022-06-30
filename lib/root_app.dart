@@ -79,7 +79,9 @@ class _RootAppState extends State<RootApp> {
         HomeScreen(),
         WalletScreen(),
         NotificationScreen(),
-        ProfileScreen(userDisplayName: 'Hoàng A',)
+        ProfileScreen(
+          userDisplayName: 'Hoàng A',
+        )
       ],
     );
   }
