@@ -4,7 +4,7 @@ List<PromotionPointVoucher> getPromotionPointVoucher() {
   List<PromotionPointVoucher> items = <PromotionPointVoucher>[];
   items.add(PromotionPointVoucher(
       'assets/images/Promotion3.png',
-      'Cafe uống nóng hoặc lạnh chứ không uống nguội bao giờ. Cũng như đời sống luôn có khao khát và thất bại chứ không thể lặng lẽ bỏ qua quá nhiều những cơ hội.',
+      'Cafe uống nóng hoặc lạnh chứ không uống nguội bao giờ. Cũng như đời sống luôn có khao khát và thất bại chứ không thể lặng lẽ bỏ qua quá nhiều những cơ hội.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       '12/06/2022 - 15/06/2022',
       '0',
       'Coupon giảm 35k 1 ly nước bất kỳ'));
