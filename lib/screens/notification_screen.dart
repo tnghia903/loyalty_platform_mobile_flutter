@@ -34,6 +34,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
+          automaticallyImplyLeading: false,
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),

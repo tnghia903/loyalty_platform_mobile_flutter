@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textDirection: TextDirection.ltr,
                     children: [
                       SizedBox(
-                        width: 160,
+                        width: MediaQuery.of(context).size.width * .4,
                         child: Text(
                           name!,
                           overflow: TextOverflow.fade,
