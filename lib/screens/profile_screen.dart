@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String? userDisplayName;
@@ -17,6 +19,18 @@ final email = user?.email;
 final avatarUrl = user?.photoURL;
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String? _accessToken;
+  Future<void> getAccessToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('access token ne: ${prefs.getString('accessToken')}');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAccessToken();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

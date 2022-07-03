@@ -8,6 +8,7 @@ import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart'
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
+import 'package:marquee/marquee.dart';
 
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';
@@ -63,6 +64,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.purple[800],
                               fontWeight: FontWeight.w700),
                         ),
+                        // child: Marquee(
+                        //     text: 'The quick brown fox jumps over the lazy dog',
+                        //     style: TextStyle(fontWeight: FontWeight.bold, fontSize:20),
+                        //     scrollAxis: Axis.horizontal, //scroll direction
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     blankSpace: 20.0,
+                        //     velocity: 50.0, //speed
+                        //     pauseAfterRound: Duration(seconds: 1),
+                        //     startPadding: 10.0,
+                        //     accelerationDuration: Duration(seconds: 1),
+                        //     accelerationCurve: Curves.linear,
+                        //     decelerationDuration: Duration(milliseconds: 500),
+                        //     decelerationCurve: Curves.easeOut,
+                        // )
                       ),
                       const SizedBox(
                         height: 2,
