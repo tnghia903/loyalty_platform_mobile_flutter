@@ -1,6 +1,6 @@
 class Promotion {
-  final String thumbNail;
+  final String imgUrl;
   final String description;
-  final String title;
-  Promotion(this.thumbNail, this.description, this.title);
+  final String promotionName;
+  Promotion(this.imgUrl, this.description, this.promotionName);
 }

@@ -25,7 +25,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width * .6,
                         child: Image.asset(
-                          items.thumbNail,
+                          items.imgUrl,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -53,7 +53,7 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
-                          items.title,
+                          items.promotionName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textDirection: TextDirection.ltr,

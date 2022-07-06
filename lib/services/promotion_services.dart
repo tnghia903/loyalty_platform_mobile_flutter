@@ -15,6 +15,7 @@ class PromotionService {
           Promotion(u["imgUrl"], u["description"], u["promotionName"]);
       promotions.add(promotion);
     }
+
     print(promotions.length);
     return promotions;
   }

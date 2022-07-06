@@ -1,6 +1,6 @@
 import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 
-List<Promotion> getPromotion() {
+List<Promotion> getPromotions() {
   List<Promotion> items = <Promotion>[];
 
   items.add(Promotion(

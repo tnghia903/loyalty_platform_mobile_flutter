@@ -7,6 +7,7 @@ import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
 import '../widgets/custom_functionbar.dart';
@@ -229,28 +230,40 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            Column(
-              children: List.generate(getPromotion().length, (index) {
-                return GestureDetector(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                    child: CustomPromotionNew(
-                      thumbNail: getPromotion()[index].thumbNail,
-                      title: getPromotion()[index].title,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PromotionNewsDetailScreen(
-                              items: getPromotion()[index]),
-                        ));
-                  },
-                );
-              }),
-            )
+            FutureBuilder(
+                future: PromotionService().getPromotion(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    print(snapshot.error);
+                  }
+                  if (snapshot.hasData) {
+                    return List.generate((snapshot.data as List).length,
+                        (index) {
+                      return GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 20, left: 20, right: 20),
+                          child: CustomPromotionNew(
+                            thumbNail: (snapshot.data as List)[index].imgUrl,
+                            title: (snapshot.data as List)[index].promotionName,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PromotionNewsDetailScreen(
+                                    items: (snapshot.data as List)[index]),
+                              ));
+                        },
+                      );
+                    }) as Widget;
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                })
           ],
         ),
       ),
