@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:marquee/marquee.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -23,6 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> getAccessToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print('access token ne: ${prefs.getString('accessToken')}');
+    print('id token ne: ${prefs.getString('accountId')}');
   }
 
   @override

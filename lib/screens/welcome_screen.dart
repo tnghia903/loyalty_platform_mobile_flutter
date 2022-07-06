@@ -31,6 +31,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+    print('idToken Google: ${credential.idToken}');
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('idTokenGoogle', credential.idToken!);
 
@@ -122,7 +123,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       if (response.statusCode == 200) {
                         print(
                             'response login ne: ${jsonDecode(response.body)}');
-                        pref.setString('accessToken', jsonDecode(response.body)['token']);
+                        pref.setString(
+                            'accessToken', jsonDecode(response.body)['token']);
+                        int accountId = jsonDecode(response.body)['accountId'];
+                        pref.setString('accountId', accountId.toString());
                       } else {
                         print('hong co duoc: ${jsonDecode(response.body)}');
                       }
