@@ -15,8 +15,6 @@ import 'package:loyalty_platform_mobile_flutter/screens/wallet_screen.dart';
 
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 
-
-
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/geolocator_services.dart';
 import 'package:loyalty_platform_mobile_flutter/services/places_service.dart';
@@ -66,8 +64,8 @@ class _MyAppState extends State<MyApp> {
 
         //WelcomeScreen(),
 
-        home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
-
+        // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
+        home: HomeScreen(),
 
         // RootApp(),
       ),
