@@ -10,9 +10,13 @@ class PromotionService {
     var jsonData = jsonDecode(response.body);
     List<Promotion> promotions = [];
 
-    for (var u in jsonData) {
-      Promotion promotion =
-          Promotion(u["imgUrl"], u["description"], u["promotionName"]);
+    // for (var u in jsonData) {
+    //   Promotion promotion = Promotion(u["image"], u["description"], u["name"]);
+    //   promotions.add(promotion);
+    // }
+    for (var i = 0; i < jsonData.length; i++) {
+      Promotion promotion = Promotion(jsonData['data'][i]['imgUrl'],
+          jsonData['data'][i]['description'], jsonData['data'][i]['promotionName']);
       promotions.add(promotion);
     }
 
