@@ -24,8 +24,12 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width * .6,
+                        // child: Image.asset(
+                        //   items.imgUrl,
+                        //   fit: BoxFit.fill,
+                        // ),
                         child: Image.asset(
-                          items.imgUrl,
+                          'assets/images/Promotion1.png',
                           fit: BoxFit.fill,
                         ),
                       ),

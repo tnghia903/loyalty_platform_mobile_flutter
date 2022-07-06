@@ -236,33 +236,66 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.hasError) {
                     print(snapshot.error);
                   }
-                  if (snapshot.hasData) {
-                    return List.generate((snapshot.data as List).length,
-                        (index) {
-                      return GestureDetector(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 20, left: 20, right: 20),
-                          child: CustomPromotionNew(
-                            thumbNail: (snapshot.data as List)[index].imgUrl,
-                            title: (snapshot.data as List)[index].promotionName,
+                  return snapshot.hasData
+                      ? Container(
+                          height: 1000,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: (snapshot.data! as List).length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 20, left: 20, right: 20),
+                                    child: CustomPromotionNew(
+                                      thumbNail:
+                                          (snapshot.data as List)[index].imgUrl,
+                                      title: (snapshot.data as List)[index]
+                                          .promotionName,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            PromotionNewsDetailScreen(
+                                                items: (snapshot.data
+                                                    as List)[index]),
+                                      ),
+                                    );
+                                  });
+                            },
                           ),
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PromotionNewsDetailScreen(
-                                    items: (snapshot.data as List)[index]),
-                              ));
-                        },
-                      );
-                    }) as Widget;
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                  //  List.generate(
+                  //   (snapshot.data as List).length,
+                  //   (index) {
+                  //     return GestureDetector(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.only(
+                  //             bottom: 20, left: 20, right: 20),
+                  //         child: CustomPromotionNew(
+                  //           thumbNail: (snapshot.data as List)[index].imgUrl,
+                  //           title:
+                  //               (snapshot.data as List)[index].promotionName,
+                  //         ),
+                  //       ),
+                  //       onTap: () {
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //               builder: (context) =>
+                  //                   PromotionNewsDetailScreen(
+                  //                       items:
+                  //                           (snapshot.data as List)[index]),
+                  //             ));
+                  //       },
+                  //     );
+                  //   },);),
                 })
           ],
         ),

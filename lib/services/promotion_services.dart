@@ -11,13 +11,17 @@ class PromotionService {
     List<Promotion> promotions = [];
 
     // for (var u in jsonData) {
-    //   Promotion promotion =
-    //       Promotion(u["imgUrl"], u["description"], u["promotionName"]);
+    //   Promotion promotion = Promotion(u["image"], u["description"], u["name"]);
     //   promotions.add(promotion);
     // }
-
     for (var i = 0; i < jsonData.length; i++) {
-      print('hihi' + jsonData['data'][i]['promotionId'].toString());
+      Promotion promotion = Promotion(
+          jsonData['data'][i]['imgUrl'],
+          (jsonData['data'][i]['description'] != null)
+              ? jsonData['data'][i]['description']
+              : '',
+          jsonData['data'][i]['promotionName']);
+      promotions.add(promotion);
     }
 
     return promotions;
