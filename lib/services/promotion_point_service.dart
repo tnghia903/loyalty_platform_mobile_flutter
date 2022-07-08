@@ -4,20 +4,27 @@ import 'package:http/http.dart' as http;
 
 import '../object/promotion_point_vourcher.dart';
 
-class PromotionService {
-  getPromotion() async {
-    var response = await http.get(Uri.parse(
-        'https://api-promotion-engine.reso.vn/api/promotions?PageSize=10&PageIndex=1&BrandId=dbe5e8e0-363b-4119-a145-6c7775abf4d3&status=0'));
+class PromotionVoucherService {
+  getPromotionVoucher() async {
+    var response =
+        await http.get(Uri.parse('http://13.232.213.53/api/v1/vouchers'));
 
-    Map<String, dynamic> map = json.decode(response.body);
-    List<dynamic> data = map["data"];
-    List<PromotionPointVoucher> promotions = [];
+    var jsondata = json.decode(response.body);
 
-    for (var i = 0; i < data.length; i++) {
-      PromotionPointVoucher promotion = PromotionPointVoucher();
-      promotions.add(promotion);
+    List<PromotionPointVoucher> vouchers = [];
+
+    for (var i = 0; i < jsondata.length; i++) {
+      PromotionPointVoucher voucher = PromotionPointVoucher(
+        jsondata[i]['image'],
+        jsondata[i]['description'],
+        jsondata[i]['name'],
+        jsondata[i]['effectiveDate'],
+        jsondata[i]['expirationDate'],
+        '0',
+      );
+      vouchers.add(voucher);
     }
 
-    return promotions;
+    return vouchers;
   }
 }

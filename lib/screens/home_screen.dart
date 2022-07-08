@@ -10,6 +10,7 @@ import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_
 import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
+import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';
 
@@ -174,42 +175,58 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, bottom: 5),
-                child: Row(
-                  children:
-                      List.generate(getPromotionPointVoucher().length, (index) {
-                    return GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: CustomPromotionPoint(
-                          thumbNail:
-                              getPromotionPointVoucher()[index].thumbNail,
-                          title: getPromotionPointVoucher()[index].title,
-                          duration: getPromotionPointVoucher()[index].duration,
-                          point: getPromotionPointVoucher()[index].point,
-                        ),
-                      ),
-                      onTap: () {
-                        showModalBottomSheet(
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20),
-                              ),
-                            ),
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            builder: (context) =>
-                                PromotionPointVoucherDetailScreen(
-                                    items: getPromotionPointVoucher()[index]));
-                      },
-                    );
-                  }),
-                ),
-              ),
-            ),
+            FutureBuilder(
+                future: PromotionVoucherService().getPromotionVoucher(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    print(snapshot.error);
+                  }
+                  return snapshot.hasData
+                      ? SizedBox(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: (snapshot.data! as List).length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: CustomPromotionPoint(
+                                      effectiveDate:
+                                          (snapshot.data as List)[index]
+                                              .effectiveDate,
+                                      thumbNail: (snapshot.data as List)[index]
+                                          .thumbNail,
+                                      expirationDate:
+                                          (snapshot.data as List)[index]
+                                              .expirationDate,
+                                      point: '0',
+                                      title:
+                                          (snapshot.data as List)[index].title,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                        context: context,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20),
+                                          ),
+                                        ),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        builder: (context) =>
+                                            PromotionPointVoucherDetailScreen(
+                                                items: (snapshot.data
+                                                    as List)[index]));
+                                  });
+                            },
+                          ),
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                }),
             const SizedBox(
               height: 30,
             ),

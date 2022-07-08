@@ -2,8 +2,9 @@ class PromotionPointVoucher {
   final String thumbNail;
   final String description;
   final String title;
-  final String duration;
+  final String effectiveDate;
+  final String expirationDate;
   final String point;
-  PromotionPointVoucher(
-      this.thumbNail, this.description, this.duration, this.point, this.title);
+  PromotionPointVoucher(this.thumbNail, this.description, this.effectiveDate,
+      this.expirationDate, this.point, this.title);
 }
