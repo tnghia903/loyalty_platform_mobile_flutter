@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         //WelcomeScreen(),
 
         // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
-        home: HomeScreen(),
+        home: RootApp(),
 
         // RootApp(),
       ),

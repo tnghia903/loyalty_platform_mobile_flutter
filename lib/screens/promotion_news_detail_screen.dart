@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 
+import '../object/image_promotion.dart';
+
 class PromotionNewsDetailScreen extends StatelessWidget {
-  const PromotionNewsDetailScreen({Key? key, required this.items})
+  const PromotionNewsDetailScreen(
+      {Key? key, required this.items, required this.imagePromotion})
       : super(key: key);
   final Promotion items;
+  final ImagePromotion imagePromotion;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +28,8 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width * .6,
-                        // child: Image.asset(
-                        //   items.imgUrl,
-                        //   fit: BoxFit.fill,
-                        // ),
                         child: Image.asset(
-                          'assets/images/Promotion1.png',
+                          imagePromotion.image,
                           fit: BoxFit.fill,
                         ),
                       ),

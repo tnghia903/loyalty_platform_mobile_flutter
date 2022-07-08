@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:loyalty_platform_mobile_flutter/datas/promotion_news_json.dart';
+import 'package:loyalty_platform_mobile_flutter/datas/image_promotion_json.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
@@ -237,10 +237,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     print(snapshot.error);
                   }
                   return snapshot.hasData
-                      ? Container(
-                          height: 1000,
+                      ? SizedBox(
                           child: ListView.builder(
-                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: (snapshot.data! as List).length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
@@ -248,8 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: const EdgeInsets.only(
                                         bottom: 20, left: 20, right: 20),
                                     child: CustomPromotionNew(
-                                      thumbNail:
-                                          (snapshot.data as List)[index].imgUrl,
+                                      thumbNail: getImage()[index].image,
                                       title: (snapshot.data as List)[index]
                                           .promotionName,
                                     ),
@@ -260,8 +259,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             PromotionNewsDetailScreen(
-                                                items: (snapshot.data
-                                                    as List)[index]),
+                                          items: (snapshot.data as List)[index],
+                                          imagePromotion: getImage()[index],
+                                        ),
                                       ),
                                     );
                                   });
@@ -271,31 +271,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       : const Center(
                           child: CircularProgressIndicator(),
                         );
-                  //  List.generate(
-                  //   (snapshot.data as List).length,
-                  //   (index) {
-                  //     return GestureDetector(
-                  //       child: Padding(
-                  //         padding: const EdgeInsets.only(
-                  //             bottom: 20, left: 20, right: 20),
-                  //         child: CustomPromotionNew(
-                  //           thumbNail: (snapshot.data as List)[index].imgUrl,
-                  //           title:
-                  //               (snapshot.data as List)[index].promotionName,
-                  //         ),
-                  //       ),
-                  //       onTap: () {
-                  //         Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //               builder: (context) =>
-                  //                   PromotionNewsDetailScreen(
-                  //                       items:
-                  //                           (snapshot.data as List)[index]),
-                  //             ));
-                  //       },
-                  //     );
-                  //   },);),
                 })
           ],
         ),

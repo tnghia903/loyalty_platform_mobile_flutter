@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
+
+import '../object/promotion_point_vourcher.dart';
 
 class PromotionService {
   getPromotion() async {
@@ -10,13 +11,10 @@ class PromotionService {
 
     Map<String, dynamic> map = json.decode(response.body);
     List<dynamic> data = map["data"];
-    List<Promotion> promotions = [];
+    List<PromotionPointVoucher> promotions = [];
 
     for (var i = 0; i < data.length; i++) {
-      Promotion promotion = Promotion(
-          data[i]['imgUrl'],
-          (data[i]['description'] != null) ? data[i]['description'] : '',
-          data[i]['promotionName']);
+      PromotionPointVoucher promotion = PromotionPointVoucher();
       promotions.add(promotion);
     }
 

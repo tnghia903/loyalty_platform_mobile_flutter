@@ -37,7 +37,7 @@ class _CustomPromotionNewState extends State<CustomPromotionNew> {
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(17), topRight: Radius.circular(17)),
               child: Image.asset(
-                'assets/images/Promotion1.png',
+                widget.thumbNail,
                 fit: BoxFit.fill,
               ),
             ),
