@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/datas/image_promotion_json.dart';
-import 'package:loyalty_platform_mobile_flutter/datas/promotion_point_json.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
@@ -183,14 +182,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   return snapshot.hasData
                       ? SizedBox(
+                          height: MediaQuery.of(context).size.width * .85,
                           child: ListView.builder(
-                            shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: (snapshot.data! as List).length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(
+                                        right: 10, bottom: 10, top: 10),
                                     child: CustomPromotionPoint(
                                       effectiveDate:
                                           (snapshot.data as List)[index]

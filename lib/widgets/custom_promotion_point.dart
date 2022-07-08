@@ -25,6 +25,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * .8,
+      height: MediaQuery.of(context).size.width * .7,
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.all(7.0),
       decoration: BoxDecoration(

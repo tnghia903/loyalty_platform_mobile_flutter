@@ -35,40 +35,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final locatorService = GeolocatorService();
-  final placesService = PlacesService();
   static const bool isSignedIn = false;
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        FutureProvider(
-          create: (context) => locatorService.getLocation(),
-          initialData: null,
-        ),
-        ProxyProvider<Position?, Future<List<Place>?>>(
-            update: (context, position, place) {
-          return (position != null)
-              ? placesService.getPlaces(position.latitude, position.longitude)
-              : placesService.getPlaces(0, 0);
-        })
-      ],
-      child: MaterialApp(
-        title: 'Loyalty platform app',
-        debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      title: 'Loyalty platform app',
+      debugShowCheckedModeBanner: false,
 
-        routes: {
-          "notification": (_) => const NotificationScreen(),
-          "root": (_) => const RootApp(),
-        },
+      routes: {
+        "notification": (_) => const NotificationScreen(),
+        "root": (_) => const RootApp(),
+      },
 
-        //WelcomeScreen(),
+      //WelcomeScreen(),
 
-        // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
-        home: RootApp(),
+      // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
+      home: RootApp(),
 
-        // RootApp(),
-      ),
+      // RootApp(),
     );
   }
 }
