@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:loyalty_platform_mobile_flutter/object/card.dart';
+import 'package:loyalty_platform_mobile_flutter/services/card_service.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -21,41 +21,75 @@ class WalletScreen extends StatelessWidget {
                     Color.fromARGB(255, 222, 159, 233),
                   ]),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Center(
-                    child: Column(children: [
-                      Container(
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: const Border(
-                              top: BorderSide(width: 2, color: Colors.white),
-                              left: BorderSide(width: 2, color: Colors.white),
-                              right: BorderSide(width: 2, color: Colors.white),
-                              bottom: BorderSide(width: 2, color: Colors.white),
-                            )),
-                        child: const Center(
-                          child: Text(
-                            "Số dư",
-                            style: TextStyle(
-                                fontSize: 26,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
+                child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.white,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: const DecorationImage(
+                          image: AssetImage("assets/images/CashCard.png"),
+                          fit: BoxFit.fill,
                         ),
                       ),
-                      const SizedBox(
-                        height: 36,
-                      ),
-                      const Text(
-                        '200.000 VNĐ',
-                        style: TextStyle(fontSize: 26, color: Colors.white),
-                      ),
-                    ]),
-                  ),
-                ),
+                      child: FutureBuilder(
+                          future: CardService().getCard(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              // ignore: avoid_print
+                              print(snapshot.error);
+                            }
+                            return snapshot.hasData
+                                ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 40, top: 60),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            (snapshot.data as CardMoney)
+                                                .cardholderName,
+                                            style: const TextStyle(
+                                              fontSize: 30,
+                                              color: Color.fromARGB(
+                                                  255, 132, 14, 153),
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Số dư : ${(snapshot.data as CardMoney).amount}',
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            color: Colors.purple,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 14,
+                                        ),
+                                        Text(
+                                          (snapshot.data as CardMoney)
+                                              .createdAt,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(
+                                                255, 212, 115, 230),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                          }),
+                    )),
               ),
               Container(
                   height: MediaQuery.of(context).size.width * .2,
@@ -73,7 +107,10 @@ class WalletScreen extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text('Nạp tiền'),
+                        Text(
+                          'Nạp tiền',
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ],
                     ),
                   )),
@@ -95,7 +132,35 @@ class WalletScreen extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Thanh toán'),
+                      Text(
+                        'Thanh toán',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.width * .2,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    border: Border(
+                  left: BorderSide(width: 0.5),
+                  right: BorderSide(width: 0.5),
+                  bottom: BorderSide(width: 0.5),
+                )),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.history_rounded),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Lịch sử thanh toán',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ],
                   ),
                 ),

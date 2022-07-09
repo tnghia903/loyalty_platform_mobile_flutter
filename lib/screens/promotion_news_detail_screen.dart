@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 
-import '../object/image_promotion.dart';
-
 class PromotionNewsDetailScreen extends StatelessWidget {
   const PromotionNewsDetailScreen({Key? key, required this.items})
       : super(key: key);
