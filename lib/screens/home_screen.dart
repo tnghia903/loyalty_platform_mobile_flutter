@@ -8,6 +8,10 @@ import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
+import 'package:marquee/marquee.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';
@@ -27,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
+            automaticallyImplyLeading: false,
             flexibleSpace: CustomAppBarHomeScreen(),
             collapsedHeight: 65,
             pinned: true,
@@ -35,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
           ),
           const SliverAppBar(
+            automaticallyImplyLeading: false,
             expandedHeight: 200,
             backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(

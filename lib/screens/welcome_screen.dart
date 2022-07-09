@@ -126,6 +126,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             'accessToken', jsonDecode(response.body)['token']);
                         int accountId = jsonDecode(response.body)['accountId'];
                         pref.setString('accountId', accountId.toString());
+                        String point =
+                            jsonDecode(response.body)['point'].toString();
+                        pref.setString('point', point);
+                        String tier = jsonDecode(response.body)['tier'];
+                        pref.setString('tier', tier.toString());
                       } else {
                         print('hong co duoc: ${jsonDecode(response.body)}');
                       }

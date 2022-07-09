@@ -7,9 +7,14 @@ class VoucherWalletService {
   Future<List> getVoucherWallets() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? membershipId = prefs.getString('accountId');
-    var url =
-        Uri.parse('http://13.232.213.53/api/v1/voucher-wallets/$membershipId');
-    final response = await http.get(url);
+    String token = prefs.getString('accessToken').toString();
+    var url = Uri.parse(
+        'http://13.232.213.53/api/v1/voucher-wallets/$membershipId?pageNumber=1&pageSize=10');
+    final response = await http.get(url, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
     List listVoucherDefinition = [];
     if (response.statusCode == 200) {
       List list = jsonDecode(response.body);
