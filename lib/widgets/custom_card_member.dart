@@ -1,9 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/member_detail_screen.dart';
 
 class CustomCardMembers extends StatelessWidget {

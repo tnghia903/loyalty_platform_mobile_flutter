@@ -1,17 +1,16 @@
 // ignore_for_file: avoid_print
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:loyalty_platform_mobile_flutter/datas/image_promotion_json.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
+
 import 'package:marquee/marquee.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
@@ -42,8 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SliverAppBar(
             automaticallyImplyLeading: false,
-            floating: true,
-            pinned: true,
             expandedHeight: 200,
             backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
@@ -95,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               return GestureDetector(
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        right: 10, bottom: 10, top: 10),
+                                        right: 5, bottom: 10, top: 10, left: 5),
                                     child: CustomPromotionPoint(
                                       effectiveDate:
                                           (snapshot.data as List)[index]
