@@ -5,13 +5,15 @@ class CustomPromotionPoint extends StatefulWidget {
       {Key? key,
       required this.thumbNail,
       required this.title,
-      required this.duration,
+      required this.effectiveDate,
+      required this.expirationDate,
       required this.point})
       : super(key: key);
 
   final String thumbNail;
   final String title;
-  final String duration;
+  final String effectiveDate;
+  final String expirationDate;
   final String point;
 
   @override
@@ -23,6 +25,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * .8,
+      height: MediaQuery.of(context).size.width * .7,
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.all(7.0),
       decoration: BoxDecoration(
@@ -71,7 +74,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
               textDirection: TextDirection.ltr,
               children: [
                 Text(
-                  widget.duration,
+                  '${widget.effectiveDate} - ${widget.expirationDate}',
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Colors.black,
