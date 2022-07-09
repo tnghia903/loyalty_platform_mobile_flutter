@@ -7,13 +7,19 @@ import 'package:provider/provider.dart';
 import '../services/geolocator_services.dart';
 import '../services/places_service.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
 
   @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+final locatorService = GeolocatorService();
+final placesService = PlacesService();
+
+class _MapScreenState extends State<MapScreen> {
+  @override
   Widget build(BuildContext context) {
-    final locatorService = GeolocatorService();
-    final placesService = PlacesService();
     final currentPosition = Provider.of<Position?>(context);
     final placesProvider = Provider.of<Future<List<Place>>?>(context);
     return MultiProvider(

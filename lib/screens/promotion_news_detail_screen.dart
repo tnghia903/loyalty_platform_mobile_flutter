@@ -4,113 +4,80 @@ import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 import '../object/image_promotion.dart';
 
 class PromotionNewsDetailScreen extends StatelessWidget {
-  const PromotionNewsDetailScreen(
-      {Key? key, required this.items, required this.imagePromotion})
+  const PromotionNewsDetailScreen({Key? key, required this.items})
       : super(key: key);
   final Promotion items;
-  final ImagePromotion imagePromotion;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * .8,
-                decoration: const BoxDecoration(
+        backgroundColor: Colors.white,
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              )),
+              automaticallyImplyLeading: false,
+              leading: RawMaterialButton(
+                shape: const CircleBorder(),
+                fillColor: Colors.black.withOpacity(0.2),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios_new,
                   color: Colors.white,
                 ),
-                child: Column(
-                  children: [
-                    Stack(children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.width * .6,
-                        child: Image.asset(
-                          imagePromotion.image,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Positioned(
-                        width: 40,
-                        top: 10,
-                        left: 10,
-                        child: RawMaterialButton(
-                            shape: const CircleBorder(),
-                            fillColor: Colors.black.withOpacity(0.25),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
-                            )),
-                      ),
-                    ]),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          items.promotionName,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textDirection: TextDirection.ltr,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height,
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, left: 10),
-                      child: Row(
-                        children: const [
-                          Text(
-                            'Nội Dung',
+              floating: true,
+              pinned: true,
+              elevation: 0.0,
+              expandedHeight: 200,
+              flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                items.imgUrl,
+                fit: BoxFit.fill,
+              )),
+            ),
+            SliverToBoxAdapter(
+                child: Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 20),
+                    child: Row(
+                      children: const [
+                        Text('Nội Dung',
+                            textAlign: TextAlign.justify,
+                            overflow: TextOverflow.clip,
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700)),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Text(items.description,
-                          textAlign: TextAlign.justify,
-                          overflow: TextOverflow.clip,
-                          textDirection: TextDirection.ltr,
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.black)),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Text(items.description,
+                        textAlign: TextAlign.justify,
+                        overflow: TextOverflow.clip,
+                        textDirection: TextDirection.ltr,
+                        style:
+                            const TextStyle(fontSize: 15, color: Colors.black)),
+                  ),
+                ],
+              ),
+            )),
+          ],
         ));
   }
 }

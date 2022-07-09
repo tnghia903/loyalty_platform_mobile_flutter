@@ -7,6 +7,8 @@ import 'package:loyalty_platform_mobile_flutter/datas/image_promotion_json.dart'
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
+import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen.dart';
+import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
 import '../services/promotion_point_service.dart';
@@ -20,133 +22,32 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-final FirebaseAuth auth = FirebaseAuth.instance;
-final User? user = auth.currentUser;
-final name = user?.displayName;
-final avatarUrl = user?.photoURL;
-
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
-              child: Row(
-                children: [
-                  SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.network(avatarUrl!),
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    textDirection: TextDirection.ltr,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .4,
-                        child: Text(
-                          name!,
-                          overflow: TextOverflow.fade,
-                          maxLines: 1,
-                          softWrap: false,
-                          style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.purple[800],
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                              left: 4, bottom: 2, top: 2, right: 4),
-                          child: Text(
-                            "Thành viên bạc",
-                            style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 44, 33, 58),
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                  Container(
-                      width: 110,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [
-                            Colors.purple,
-                            Color.fromARGB(255, 222, 159, 233),
-                          ]),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(17)),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(10, 10),
-                              blurRadius: 20,
-                              color: const Color.fromARGB(255, 222, 159, 233)
-                                  .withOpacity(0.3),
-                            )
-                          ]),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 17,
-                          ),
-                          const Text(
-                            "2000",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            width: 25,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Padding(
-                              padding:
-                                  EdgeInsets.only(left: 8, top: 4, bottom: 2),
-                              child: Text(
-                                'P',
-                                style: TextStyle(
-                                  color: Colors.purple,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      )),
-                ],
-              ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            flexibleSpace: CustomAppBarHomeScreen(),
+            collapsedHeight: 65,
+            pinned: true,
+            backgroundColor: Colors.white,
+            titleSpacing: 0,
+            centerTitle: true,
+          ),
+          const SliverAppBar(
+            floating: true,
+            pinned: true,
+            expandedHeight: 200,
+            backgroundColor: Colors.white,
+            flexibleSpace: FlexibleSpaceBar(
+              background: CustomCardMembers(),
             ),
+          ),
+          SliverList(
+              delegate: SliverChildListDelegate([
             const SizedBox(
               height: 30,
             ),
@@ -200,7 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       expirationDate:
                                           (snapshot.data as List)[index]
                                               .expirationDate,
-                                      point: '0',
+                                      point: (snapshot.data as List)[index]
+                                          .point
+                                          .toString(),
                                       title:
                                           (snapshot.data as List)[index].title,
                                     ),
@@ -265,7 +168,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: const EdgeInsets.only(
                                         bottom: 20, left: 20, right: 20),
                                     child: CustomPromotionNew(
-                                      thumbNail: getImage()[index].image,
+                                      thumbNail:
+                                          (snapshot.data as List)[index].imgUrl,
                                       title: (snapshot.data as List)[index]
                                           .promotionName,
                                     ),
@@ -277,7 +181,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         builder: (context) =>
                                             PromotionNewsDetailScreen(
                                           items: (snapshot.data as List)[index],
-                                          imagePromotion: getImage()[index],
                                         ),
                                       ),
                                     );
@@ -289,9 +192,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: CircularProgressIndicator(),
                         );
                 })
-          ],
-        ),
+          ]))
+        ],
       ),
-    ));
+    );
   }
 }

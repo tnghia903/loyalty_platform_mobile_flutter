@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:loyalty_platform_mobile_flutter/datas/image_promotion_json.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion.dart';
 
 class PromotionService {
@@ -12,11 +13,16 @@ class PromotionService {
     List<dynamic> data = map["data"];
     List<Promotion> promotions = [];
 
+    // for (var i = 0; i < data.length; i++) {
+    //   Promotion promotion = Promotion(
+    //       data[i]['imgUrl'],
+    //       (data[i]['description'] != null) ? data[i]['description'] : '',
+    //       data[i]['promotionName']);
+    //   promotions.add(promotion);
+    // }
     for (var i = 0; i < data.length; i++) {
-      Promotion promotion = Promotion(
-          data[i]['imgUrl'],
-          (data[i]['description'] != null) ? data[i]['description'] : '',
-          data[i]['promotionName']);
+      Promotion promotion = Promotion(getImageAndDescription()[i].image,
+          getImageAndDescription()[i].description, data[i]['promotionName']);
       promotions.add(promotion);
     }
 

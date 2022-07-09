@@ -51,12 +51,11 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
               child: Container(
-            height: 400,
             color: Colors.white,
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: Row(
                     children: [
                       Text(items.title,
@@ -80,7 +79,8 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                           const TextStyle(fontSize: 15, color: Colors.black)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 20, bottom: 20),
                   child: SizedBox(
                     width: 250,
                     height: 45,
