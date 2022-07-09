@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -6,6 +8,7 @@ import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/primary_button.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -28,6 +31,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+    print('idToken Google: ${credential.idToken}');
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('idTokenGoogle', credential.idToken!);
 
     // Once signed in, return UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
@@ -83,6 +89,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: MediaQuery.of(context).size.width * .15,
                   child: SecondaryButton(
                     onPressed: () async {
+                      SharedPreferences pref =
+                          await SharedPreferences.getInstance();
                       // Obtain shared preferences.
                       FirebaseAuth.instance
                           .authStateChanges()
@@ -99,6 +107,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           );
                         }
                       });
+                      print('goi api ne ${pref.getString('idTokenGoogle')}');
+                      final response = await http.post(
+                        Uri.parse("http://13.232.213.53/api/v1/auth/login"),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json',
+                        },
+                        body: jsonEncode(
+                          <String, String?>{
+                            'idToken': pref.getString('idTokenGoogle'),
+                          },
+                        ),
+                      );
+
+                      if (response.statusCode == 200) {
+                        print(
+                            'response login ne: ${jsonDecode(response.body)}');
+                        pref.setString(
+                            'accessToken', jsonDecode(response.body)['token']);
+                        int accountId = jsonDecode(response.body)['accountId'];
+                        pref.setString('accountId', accountId.toString());
+                      } else {
+                        print('hong co duoc: ${jsonDecode(response.body)}');
+                      }
                     },
                     // onPressed: _signInAnonymously,
                     title: 'Login with Google',
