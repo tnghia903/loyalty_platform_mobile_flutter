@@ -3,9 +3,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomAppBarHomeScreen extends StatelessWidget {
+class CustomAppBarHomeScreen extends StatefulWidget {
   const CustomAppBarHomeScreen({super.key});
+
+  @override
+  State<CustomAppBarHomeScreen> createState() => _CustomAppBarHomeScreenState();
+}
+
+class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
+  String? point;
+  String? tier;
+
+  Future<void> getInformation() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    point = prefs.getString('point');
+    tier = prefs.getString('tier').toString();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInformation();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +75,12 @@ class CustomAppBarHomeScreen extends StatelessWidget {
                     color: Colors.grey[400],
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.only(left: 4, bottom: 2, top: 2, right: 4),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 4, bottom: 2, top: 2, right: 4),
                     child: Text(
-                      "Thành viên bạc",
-                      style: TextStyle(
+                      tier.toString(),
+                      style: const TextStyle(
                           fontSize: 12,
                           color: Color.fromARGB(255, 44, 33, 58),
                           fontWeight: FontWeight.w500),
@@ -85,9 +106,9 @@ class CustomAppBarHomeScreen extends StatelessWidget {
                   const SizedBox(
                     width: 17,
                   ),
-                  const Text(
-                    "2000",
-                    style: TextStyle(
+                  Text(
+                    point.toString(),
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
