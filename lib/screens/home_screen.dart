@@ -11,6 +11,7 @@ import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 import 'package:marquee/marquee.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
