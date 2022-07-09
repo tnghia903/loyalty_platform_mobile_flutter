@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
+            automaticallyImplyLeading: false,
             flexibleSpace: CustomAppBarHomeScreen(),
             collapsedHeight: 65,
             pinned: true,
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
           ),
           const SliverAppBar(
+            automaticallyImplyLeading: false,
             floating: true,
             pinned: true,
             expandedHeight: 200,
