@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';<<<<<<< ggmap
+import 'package:loyalty_platform_mobile_flutter/library/tier_color.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomAppBarHomeScreen extends StatefulWidget {
@@ -69,7 +71,7 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[400],
+                    color: getTierColor(tier.toString()),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
@@ -79,7 +81,7 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
                       tier.toString(),
                       style: const TextStyle(
                           fontSize: 12,
-                          color: Color.fromARGB(255, 44, 33, 58),
+                          color: Colors.white,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -89,7 +91,6 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
           ),
           Expanded(child: Container()),
           Container(
-              width: 110,
               height: 40,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: [
@@ -100,35 +101,38 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
               ),
               child: Row(
                 children: [
-                  const SizedBox(
-                    width: 17,
-                  ),
-                  Text(
-                    point.toString(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      point.toString(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
-                  Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 8, top: 4, bottom: 2),
-                      child: Text(
-                        'P',
-                        style: TextStyle(
-                          color: Colors.purple,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Container(
+                      width: 25,
+                      height: 25,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 8, top: 4, bottom: 2),
+                        child: Text(
+                          'P',
+                          style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),

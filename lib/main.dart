@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/backgroundHandler.dart';
 import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 
 import 'screens/home_screen.dart';
 import 'screens/welcome_screen.dart';
@@ -39,8 +41,8 @@ class _MyAppState extends State<MyApp> {
 
       //WelcomeScreen(),
 
-      home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
-      // home: RootApp(),
+      // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
+      home: RootApp(),
 
       // RootApp(),
     );
