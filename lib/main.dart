@@ -9,6 +9,9 @@ import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
 
+import 'screens/home_screen.dart';
+import 'screens/welcome_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';<<<<<<< ggmap
 import 'package:loyalty_platform_mobile_flutter/library/tier_color.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomAppBarHomeScreen extends StatefulWidget {
