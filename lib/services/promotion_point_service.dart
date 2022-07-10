@@ -14,6 +14,7 @@ class PromotionVoucherService {
 
     for (var i = 0; i < jsondata.length; i++) {
       PromotionPointVoucher voucher = PromotionPointVoucher(
+        jsondata[i]['id'],
         jsondata[i]['image'],
         jsondata[i]['description'],
         jsondata[i]['effectiveDate'],

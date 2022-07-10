@@ -1,15 +1,21 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loyalty_platform_mobile_flutter/services/voucher_wallet_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomPromotionPoint extends StatefulWidget {
   const CustomPromotionPoint(
       {Key? key,
+      required this.id,
       required this.thumbNail,
       required this.title,
       required this.effectiveDate,
       required this.expirationDate,
       required this.point})
       : super(key: key);
-
+  final int id;
   final String thumbNail;
   final String title;
   final String effectiveDate;
@@ -21,6 +27,12 @@ class CustomPromotionPoint extends StatefulWidget {
 }
 
 class _CustomPromotionPointState extends State<CustomPromotionPoint> {
+  Future<bool> checkPoint() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? point = prefs.getString('point');
+    return int.parse(point!) >= widget.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -125,7 +137,24 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
             SizedBox(
               width: 110,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (checkPoint() == true) {
+                    VoucherWalletService().addVoucherInWallet(widget.id);
+                    Fluttertoast.showToast(
+                        msg: "Đổi thành công", // message
+                        toastLength: Toast.LENGTH_SHORT, // length
+                        gravity: ToastGravity.BOTTOM, // location
+                        timeInSecForIosWeb: 1 // duration
+                        );
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "Bạn không đủ điểm", // message
+                        toastLength: Toast.LENGTH_SHORT, // length
+                        gravity: ToastGravity.BOTTOM, // location
+                        timeInSecForIosWeb: 1 // duration
+                        );
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
                     onPrimary: Colors.white,
