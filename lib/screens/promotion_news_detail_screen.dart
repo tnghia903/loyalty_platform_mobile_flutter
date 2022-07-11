@@ -31,7 +31,6 @@ class PromotionNewsDetailScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              floating: true,
               pinned: true,
               elevation: 0.0,
               expandedHeight: 200,

@@ -34,7 +34,6 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                     )),
               ),
             ],
-            floating: true,
             pinned: true,
             elevation: 0.0,
             snap: false,
