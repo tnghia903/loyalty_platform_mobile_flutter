@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../object/promotion_point_vourcher.dart';
 
 class PromotionVoucherService {
-  getPromotionVoucher() async {
+  Future<List> getPromotionVoucher() async {
     var response = await http.get(Uri.parse(
         'http://13.232.213.53/api/v1/vouchers?pageNumber=1&pageSize=13'));
     var jsondata = json.decode(response.body);
