@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../object/Tier.dart';
 
 class TierService {
-  getTier() async {
+  Future<List> getTier() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.getString('accessToken');
     var response = await http.get(
@@ -22,7 +22,7 @@ class TierService {
         Tier tier = Tier(
             jsondata[i]['id'],
             jsondata[i]['loyaltyProgramId'],
-            jsondata[i]['minPoints'].toDouble(),
+            jsondata[i]['minPoints'],
             jsondata[i]['ratioPoints'].toDouble(),
             jsondata[i]['sequenceNumber']);
         tiers.add(tier);

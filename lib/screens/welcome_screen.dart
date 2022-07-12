@@ -122,15 +122,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       if (response.statusCode == 200) {
                         print(
                             'response login ne: ${jsonDecode(response.body)}');
-                        pref.setString(
-                            'accessToken', jsonDecode(response.body)['token']);
+                        String accessToken = jsonDecode(response.body)['token'];
+                        pref.setString('accessToken', accessToken.toString());
                         int accountId = jsonDecode(response.body)['accountId'];
                         pref.setString('accountId', accountId.toString());
-                        String point =
-                            jsonDecode(response.body)['point'].toString();
-                        pref.setString('point', point);
-                        String tier = jsonDecode(response.body)['tier'];
-                        pref.setString('tier', tier.toString());
                       } else {
                         print('hong co duoc: ${jsonDecode(response.body)}');
                       }

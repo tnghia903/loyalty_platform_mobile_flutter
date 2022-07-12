@@ -22,8 +22,8 @@ class MemberShipCurrencyService {
       jsondata['totalPointsAccrued'],
       jsondata['balanceBeforeReset'],
       jsondata['expirationPoints'],
+      jsondata['pointsBalance'],
     );
-
     return memberShipCurrency;
   }
 }

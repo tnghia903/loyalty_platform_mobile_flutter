@@ -1,8 +1,18 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/library/tier_color.dart';
+import 'package:loyalty_platform_mobile_flutter/object/member_tier.dart';
+import 'package:loyalty_platform_mobile_flutter/object/membershipcurrency.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/services/membership_currency_services.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/member_tier_services.dart';
+import '../services/tier_services.dart';
 
 class CustomAppBarHomeScreen extends StatefulWidget {
   const CustomAppBarHomeScreen({super.key});
@@ -15,16 +25,21 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
   String? point;
   String? tier;
 
-  Future<void> getInformation() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    point = prefs.getString('point');
-    tier = prefs.getString('tier').toString();
+  getInfomation() async {
+    List response = await Future.wait([
+      MemberTierServices().getMemberTier(),
+      MemberShipCurrencyService().getMemberShipCurrency()
+    ]);
+    setState(() {
+      tier = response[0].name;
+      point = response[1].pointsBalance.toString();
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    getInformation();
+    getInfomation();
   }
 
   @override
