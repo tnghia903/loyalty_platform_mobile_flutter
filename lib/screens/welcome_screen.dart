@@ -99,6 +99,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           print('User is currently signed out!');
                         } else {
                           print(user.uid);
+                          print(
+                              'goi api ne ${pref.getString('idTokenGoogle')}');
+                          final response = await http.post(
+                            Uri.parse("http://13.232.213.53/api/v1/auth/login"),
+                            headers: <String, String>{
+                              'Content-Type': 'application/json',
+                            },
+                            body: jsonEncode(
+                              <String, String?>{
+                                'idToken': pref.getString('idTokenGoogle'),
+                              },
+                            ),
+                          );
+
+                          if (response.statusCode == 200) {
+                            print(
+                                'response login ne: ${jsonDecode(response.body)}');
+                            String accessToken =
+                                jsonDecode(response.body)['token'];
+                            pref.setString('accessToken', accessToken);
+                            int accountId =
+                                jsonDecode(response.body)['accountId'];
+                            pref.setString('accountId', accountId.toString());
+                            String point =
+                                jsonDecode(response.body)['point'].toString();
+                            pref.setString('point', point);
+                            String tier = jsonDecode(response.body)['tier'];
+                            pref.setString('tier', tier.toString());
+                          } else {
+                            print('hong co duoc: ${jsonDecode(response.body)}');
+                          }
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => const RootApp(),
@@ -106,29 +137,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           );
                         }
                       });
-                      print('goi api ne ${pref.getString('idTokenGoogle')}');
-                      final response = await http.post(
-                        Uri.parse("http://13.232.213.53/api/v1/auth/login"),
-                        headers: <String, String>{
-                          'Content-Type': 'application/json',
-                        },
-                        body: jsonEncode(
-                          <String, String?>{
-                            'idToken': pref.getString('idTokenGoogle'),
-                          },
-                        ),
-                      );
-
-                      if (response.statusCode == 200) {
-                        print(
-                            'response login ne: ${jsonDecode(response.body)}');
-                        String accessToken = jsonDecode(response.body)['token'];
-                        pref.setString('accessToken', accessToken.toString());
-                        int accountId = jsonDecode(response.body)['accountId'];
-                        pref.setString('accountId', accountId.toString());
-                      } else {
-                        print('hong co duoc: ${jsonDecode(response.body)}');
-                      }
                     },
                     // onPressed: _signInAnonymously,
                     title: 'Login with Google',

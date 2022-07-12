@@ -117,8 +117,8 @@ class VoucherWallet extends StatelessWidget {
               child: Image.asset(wallet['image']),
             ),
             Container(
-              padding: const EdgeInsets.all(8),
-              width: size.width * .65,
+              padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+              width: size.width * .62,
               child: Column(
                 children: [
                   Padding(
@@ -133,7 +133,7 @@ class VoucherWallet extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 32),
+                    padding: const EdgeInsets.only(top: 16),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
