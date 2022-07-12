@@ -11,17 +11,19 @@ class CardService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.getString('accessToken');
     var memberId = prefs.getString('accountId');
+    CardMoney card = CardMoney('cardholderName', 20, 'createdAt');
 
     var response = await http.get(
         Uri.parse('http://13.232.213.53/api/v1/cards/$memberId'),
         headers: {HttpHeaders.authorizationHeader: "Bearer $accessToken"});
-    var jsondata = json.decode(response.body);
-    CardMoney card = CardMoney(
-      jsondata['cardholderName'],
-      jsondata['amount'].toDouble(),
-      jsondata['createdAt'],
-    );
-
+    if (response.statusCode == 200) {
+      var jsondata = json.decode(response.body);
+      card = CardMoney(
+        jsondata['cardholderName'],
+        jsondata['amount'].toDouble(),
+        jsondata['createdAt'],
+      );
+    }
     return card;
   }
 }
