@@ -11,6 +11,14 @@ class MemberDetailScreen extends StatefulWidget {
   State<MemberDetailScreen> createState() => _MemberDetailScreenState();
 }
 
+checkPoint(double point) {
+  if (point > 60) {
+    return 1.toDouble();
+  } else {
+    return ((point * 100) / 60) / 100;
+  }
+}
+
 class _MemberDetailScreenState extends State<MemberDetailScreen> {
   @override
   Widget build(BuildContext context) {
@@ -85,13 +93,10 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 20, right: 20, top: 16),
                                   child: GFProgressBar(
-                                    percentage:
-                                        (((snapshot.data as MemberShipCurrency)
-                                                        .totalPointsAccrued
-                                                        .toDouble() *
-                                                    100) /
-                                                160) /
-                                            100,
+                                    percentage: checkPoint(
+                                        (snapshot.data as MemberShipCurrency)
+                                            .totalPointsAccrued
+                                            .toDouble()),
                                     lineHeight: 16,
                                     alignment: MainAxisAlignment.spaceBetween,
                                     backgroundColor: Colors.grey.shade200,

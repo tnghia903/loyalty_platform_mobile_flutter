@@ -25,11 +25,12 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
   String? point;
   String? tier;
 
-  getInfomation() async {
+  Future<void> getInfomation() async {
     List response = await Future.wait([
       MemberTierServices().getMemberTier(),
       MemberShipCurrencyService().getMemberShipCurrency()
     ]);
+
     setState(() {
       tier = response[0].name;
       point = response[1].pointsBalance.toString();

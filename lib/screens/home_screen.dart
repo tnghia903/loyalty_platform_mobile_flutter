@@ -25,176 +25,187 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            automaticallyImplyLeading: false,
-            flexibleSpace: CustomAppBarHomeScreen(),
-            collapsedHeight: 65,
-            pinned: true,
-            backgroundColor: Colors.white,
-            titleSpacing: 0,
-            centerTitle: true,
-          ),
-          const SliverAppBar(
-            automaticallyImplyLeading: false,
-            expandedHeight: 200,
-            backgroundColor: Colors.white,
-            flexibleSpace: FlexibleSpaceBar(
-              background: CustomCardMembers(),
+    return RefreshIndicator(
+      onRefresh: () async {
+        setState(() {});
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              automaticallyImplyLeading: false,
+              flexibleSpace: CustomAppBarHomeScreen(),
+              collapsedHeight: 65,
+              pinned: true,
+              backgroundColor: Colors.white,
+              titleSpacing: 0,
+              centerTitle: true,
             ),
-          ),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            const SizedBox(
-              height: 30,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(right: 20, left: 20),
-              child: CustomFunctionBar(),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: Row(
-                children: [
-                  Text(
-                    "Ưu đãi cho bạn",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.purple[800],
-                        fontWeight: FontWeight.w700),
-                  ),
-                ],
+            const SliverAppBar(
+              automaticallyImplyLeading: false,
+              expandedHeight: 200,
+              backgroundColor: Colors.white,
+              flexibleSpace: FlexibleSpaceBar(
+                background: CustomCardMembers(),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            FutureBuilder(
-                future: PromotionVoucherService().getPromotionVoucher(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    print(snapshot.error);
-                  }
-                  return snapshot.hasData
-                      ? SizedBox(
-                          height: MediaQuery.of(context).size.width * .85,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: (snapshot.data! as List).length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 5, bottom: 10, top: 10, left: 5),
-                                    child: CustomPromotionPoint(
-                                      id: (snapshot.data as List)[index].id,
-                                      effectiveDate:
-                                          (snapshot.data as List)[index]
-                                              .effectiveDate,
-                                      thumbNail: (snapshot.data as List)[index]
-                                          .thumbNail,
-                                      expirationDate:
-                                          (snapshot.data as List)[index]
-                                              .expirationDate,
-                                      point: (snapshot.data as List)[index]
-                                          .point
-                                          .toString(),
-                                      title:
-                                          (snapshot.data as List)[index].title,
+            SliverList(
+                delegate: SliverChildListDelegate([
+              const SizedBox(
+                height: 30,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 20, left: 20),
+                child: CustomFunctionBar(),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20),
+                child: Row(
+                  children: [
+                    Text(
+                      "Ưu đãi cho bạn",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.purple[800],
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FutureBuilder(
+                  future: PromotionVoucherService().getPromotionVoucher(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      print(snapshot.error);
+                    }
+                    return snapshot.hasData
+                        ? SizedBox(
+                            height: MediaQuery.of(context).size.width * .85,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: (snapshot.data! as List).length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 5,
+                                          bottom: 10,
+                                          top: 10,
+                                          left: 5),
+                                      child: CustomPromotionPoint(
+                                        id: (snapshot.data as List)[index].id,
+                                        effectiveDate:
+                                            (snapshot.data as List)[index]
+                                                .effectiveDate,
+                                        thumbNail:
+                                            (snapshot.data as List)[index]
+                                                .thumbNail,
+                                        expirationDate:
+                                            (snapshot.data as List)[index]
+                                                .expirationDate,
+                                        point: (snapshot.data as List)[index]
+                                            .point
+                                            .toString(),
+                                        title: (snapshot.data as List)[index]
+                                            .title,
+                                      ),
                                     ),
-                                  ),
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        context: context,
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.vertical(
-                                            top: Radius.circular(20),
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(20),
+                                            ),
+                                          ),
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          builder: (context) =>
+                                              PromotionPointVoucherDetailScreen(
+                                                  items: (snapshot.data
+                                                      as List)[index]));
+                                    });
+                              },
+                            ),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  }),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20),
+                child: Row(
+                  children: [
+                    Text(
+                      "Xem gì hôm nay",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.purple[800],
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FutureBuilder(
+                  future: PromotionService().getPromotion(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      print(snapshot.error);
+                    }
+                    return snapshot.hasData
+                        ? SizedBox(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: (snapshot.data! as List).length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          bottom: 20, left: 20, right: 20),
+                                      child: CustomPromotionNew(
+                                        thumbNail:
+                                            (snapshot.data as List)[index]
+                                                .imgUrl,
+                                        title: (snapshot.data as List)[index]
+                                            .promotionName,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PromotionNewsDetailScreen(
+                                            items:
+                                                (snapshot.data as List)[index],
                                           ),
                                         ),
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        builder: (context) =>
-                                            PromotionPointVoucherDetailScreen(
-                                                items: (snapshot.data
-                                                    as List)[index]));
-                                  });
-                            },
-                          ),
-                        )
-                      : const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                }),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: Row(
-                children: [
-                  Text(
-                    "Xem gì hôm nay",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.purple[800],
-                        fontWeight: FontWeight.w700),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            FutureBuilder(
-                future: PromotionService().getPromotion(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    print(snapshot.error);
-                  }
-                  return snapshot.hasData
-                      ? SizedBox(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: (snapshot.data! as List).length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: 20, left: 20, right: 20),
-                                    child: CustomPromotionNew(
-                                      thumbNail:
-                                          (snapshot.data as List)[index].imgUrl,
-                                      title: (snapshot.data as List)[index]
-                                          .promotionName,
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PromotionNewsDetailScreen(
-                                          items: (snapshot.data as List)[index],
-                                        ),
-                                      ),
-                                    );
-                                  });
-                            },
-                          ),
-                        )
-                      : const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                })
-          ]))
-        ],
+                                      );
+                                    });
+                              },
+                            ),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  })
+            ]))
+          ],
+        ),
       ),
     );
   }

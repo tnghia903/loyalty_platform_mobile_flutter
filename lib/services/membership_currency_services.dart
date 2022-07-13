@@ -15,7 +15,7 @@ class MemberShipCurrencyService {
     var response = await http.get(
         Uri.parse('http://13.232.213.53/api/v1/member-currencies/$memberId/2'),
         headers: {HttpHeaders.authorizationHeader: "Bearer $accessToken"});
-    var jsondata = json.decode(response.body);
+    Map<String, dynamic> jsondata = json.decode(response.body);
     MemberShipCurrency memberShipCurrency = MemberShipCurrency(
       jsondata['totalPointsRedeemed'],
       jsondata['totalPointsExpired'],
@@ -23,6 +23,7 @@ class MemberShipCurrencyService {
       jsondata['balanceBeforeReset'],
       jsondata['expirationPoints'],
       jsondata['pointsBalance'],
+      jsondata['membership']['membershipCode'],
     );
     return memberShipCurrency;
   }

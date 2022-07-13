@@ -19,11 +19,20 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> {
   int pageIndex = 0;
+  // List<Widget> pages = const[
+  //   HomeScreen(),
+  //   WalletScreen(),
+  //   NotificationScreen(),
+  //   ProfileScreen(
+  //     userDisplayName: 'Hoàng A',
+  //   )
+  // ];
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
       bottomNavigationBar: getFooter(),
+      // body: pages[pageIndex],
       body: getBody(),
     );
   }

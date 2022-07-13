@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
       providers: [
         FutureProvider(
           create: (context) => locatorService.getLocation(),
-          initialData: null,
+          initialData: 42,
         ),
         ProxyProvider<Position?, Future<List<Place>?>>(
             update: (context, position, place) {
@@ -37,7 +37,7 @@ class _MapScreenState extends State<MapScreen> {
       ],
       child: FutureProvider(
         create: (context) => placesProvider,
-        initialData: null,
+        initialData: 42,
         child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
