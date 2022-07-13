@@ -39,8 +39,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
               padding: const EdgeInsets.only(right: 10),
               child: IconButton(
                   onPressed: () {
-                    for (int i = 0; i <= isSelected.length; i++) {
-                      isSelected[i] = true;
+                    if (isSelected.isNotEmpty) {
+                      for (int i = 0; i < isSelected.length; i++) {
+                        isSelected[i] = true;
+                      }
                     }
                   },
                   icon: const Icon(
