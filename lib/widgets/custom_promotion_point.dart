@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:ffi';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loyalty_platform_mobile_flutter/services/membership_currency_services.dart';
 import 'package:loyalty_platform_mobile_flutter/services/voucher_wallet_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomPromotionPoint extends StatefulWidget {
   const CustomPromotionPoint(
       {Key? key,
+      required this.update,
       required this.id,
       required this.thumbNail,
       required this.title,
@@ -15,6 +19,8 @@ class CustomPromotionPoint extends StatefulWidget {
       required this.expirationDate,
       required this.point})
       : super(key: key);
+
+  final Function update;
   final int id;
   final String thumbNail;
   final String title;
@@ -30,7 +36,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
   Future<bool> checkPoint() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? point = prefs.getString('point');
-    return int.parse(point!) >= widget.id;
+    return int.parse(point!) >= int.parse(widget.point.toString());
   }
 
   @override
@@ -137,15 +143,24 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
             SizedBox(
               width: 110,
               child: ElevatedButton(
-                onPressed: () {
-                  if (checkPoint() == true) {
+                onPressed: () async {
+                  bool check = await checkPoint();
+                  if (check) {
                     VoucherWalletService().addVoucherInWallet(widget.id);
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    List response = await Future.wait(
+                        [MemberShipCurrencyService().getMemberShipCurrency()]);
+                    pref.setString(
+                        'point', response[0].pointsBalance.toString());
+                    widget.update();
                     Fluttertoast.showToast(
                         msg: "Đổi thành công", // message
                         toastLength: Toast.LENGTH_SHORT, // length
                         gravity: ToastGravity.BOTTOM, // location
                         timeInSecForIosWeb: 1 // duration
                         );
+                    print(pref.getString('point'));
                   } else {
                     Fluttertoast.showToast(
                         msg: "Bạn không đủ điểm", // message
