@@ -72,7 +72,7 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .35,
-                  height: 25,
+                  height: 24,
                   child: Marquee(
                     text: name!,
                     style: TextStyle(
