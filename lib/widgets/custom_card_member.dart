@@ -1,8 +1,34 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
+
 import 'package:loyalty_platform_mobile_flutter/screens/member_detail_screen.dart';
 
-class CustomCardMembers extends StatelessWidget {
+import '../services/membership_currency_services.dart';
+
+class CustomCardMembers extends StatefulWidget {
   const CustomCardMembers({super.key});
+
+  @override
+  State<CustomCardMembers> createState() => _CustomCardMembersState();
+}
+
+class _CustomCardMembersState extends State<CustomCardMembers> {
+  String? code;
+
+  getCode() async {
+    var membershipcurrency =
+        await MemberShipCurrencyService().getMemberShipCurrency();
+
+    setState(() {
+      code = membershipcurrency.membershipCode;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCode();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,44 +56,23 @@ class CustomCardMembers extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Container(
-                  width: MediaQuery.of(context).size.width * .8,
-                  height: MediaQuery.of(context).size.width * .3,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                    color: Colors.white,
+                width: MediaQuery.of(context).size.width * .8,
+                height: MediaQuery.of(context).size.width * .3,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
                   ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * .7,
-                          height: MediaQuery.of(context).size.width * .17,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: Image.asset('assets/images/Barcode.png',
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        "M161591377",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: BarcodeWidget(
+                    textPadding: 16,
+                    data: code.toString(),
+                    barcode: Barcode.code128(),
+                  ),
+                ),
+              ),
             ),
           )),
     );

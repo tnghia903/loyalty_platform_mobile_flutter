@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     Future<void> _update() async {
       SharedPreferences pref = await SharedPreferences.getInstance();
 
@@ -124,7 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           top: 10,
                                           left: 5),
                                       child: CustomPromotionPoint(
+
                                         update: _update,
+
                                         id: (snapshot.data as List)[index].id,
                                         effectiveDate:
                                             (snapshot.data as List)[index]

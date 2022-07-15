@@ -147,7 +147,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                             ),
                                           ),
                                           Text(
-                                            DateFormat("dd/MM").format(time!),
+                                            DateFormat("dd/MM hh:mm aaa")
+                                                .format(time!),
+                                            // time!.toString(),
                                             overflow: TextOverflow.clip,
                                             style: const TextStyle(
                                                 fontSize: 12,
