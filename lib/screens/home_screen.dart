@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/services/member_tier_services.dart';
+import 'package:loyalty_platform_mobile_flutter/services/membership_currency_services.dart';
 import 'package:loyalty_platform_mobile_flutter/services/promotion_services.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
@@ -23,11 +25,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _count = 0;
+
+  void _update() {
+    setState(() => _count++);
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    Future<void> _update() async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+
+      List response = await Future.wait([
+        MemberTierServices().getMemberTier(),
+        MemberShipCurrencyService().getMemberShipCurrency()
+
+        // tier = response[0].name.toString();
+        // point = response[1].pointsBalance.toString();
+      ]);
+      pref.setString('point', response[1].pointsBalance.toString());
+      pref.setString('tier', response[0].name.toString());
+    }
+
     return RefreshIndicator(
       onRefresh: () async {
-        setState(() {});
+        setState(() {
+          _update();
+        });
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -100,6 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           top: 10,
                                           left: 5),
                                       child: CustomPromotionPoint(
+
+                                        update: _update,
+
                                         id: (snapshot.data as List)[index].id,
                                         effectiveDate:
                                             (snapshot.data as List)[index]

@@ -26,26 +26,33 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
   String? point;
   String? tier;
 
-  Future<void> getInfomation() async {
-    List response = await Future.wait([
-      MemberTierServices().getMemberTier(),
-      MemberShipCurrencyService().getMemberShipCurrency()
-    ]);
+
+  getInfomation() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    // List response = await Future.wait([
+    //   MemberTierServices().getMemberTier(),
+    //   MemberShipCurrencyService().getMemberShipCurrency()
+    // ]);
+
 
     setState(() {
-      tier = response[0].name;
-      point = response[1].pointsBalance.toString();
+      // tier = response[0].name.toString();
+      // point = response[1].pointsBalance.toString();
+
+      tier = pref.getString('tier');
+      point = pref.getString('point');
     });
   }
 
   @override
   void initState() {
     super.initState();
-    getInfomation();
   }
 
   @override
   Widget build(BuildContext context) {
+    getInfomation();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
     final name = user?.displayName;
