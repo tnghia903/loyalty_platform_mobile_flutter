@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:loyalty_platform_mobile_flutter/main.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/primary_button.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/buttons/secondary_button.dart';
@@ -30,10 +32,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+
     print('idToken Google: ${credential.idToken}');
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('idTokenGoogle', credential.idToken!);
-
+    FirebaseMessaging.instance.getToken().then((token) {
+      pref.setString('deviceId', token!);
+    });
     // Once signed in, return UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -88,9 +93,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: MediaQuery.of(context).size.width * .15,
                   child: SecondaryButton(
                     onPressed: () async {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: ((context) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }));
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();
                       // Obtain shared preferences.
+
                       FirebaseAuth.instance
                           .authStateChanges()
                           .listen((User? user) async {
@@ -109,6 +123,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             body: jsonEncode(
                               <String, String?>{
                                 'idToken': pref.getString('idTokenGoogle'),
+                                'deviceId': pref.getString('deviceId'),
                               },
                             ),
                           );
@@ -130,13 +145,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           } else {
                             print('hong co duoc: ${jsonDecode(response.body)}');
                           }
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const RootApp(),
-                            ),
-                          );
                         }
                       });
+                      navigatorKey.currentState!
+                          .popUntil((route) => route.isFirst);
                     },
                     // onPressed: _signInAnonymously,
                     title: 'Login with Google',

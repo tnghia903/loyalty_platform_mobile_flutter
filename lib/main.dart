@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -26,14 +27,15 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class _MyAppState extends State<MyApp> {
-  static const bool isSignedIn = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Loyalty platform app',
       debugShowCheckedModeBanner: false,
-
+      navigatorKey: navigatorKey,
       routes: {
         "notification": (_) => const NotificationScreen(),
         "root": (_) => const RootApp(),
@@ -41,9 +43,26 @@ class _MyAppState extends State<MyApp> {
 
       //WelcomeScreen(),
 
-      home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
+      // home: isSignedIn ? const HomeScreen() : const WelcomeScreen(),
       // home: RootApp(),
-
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Something went wrong. Please try again later'),
+            );
+          } else if (snapshot.hasData) {
+            return const RootApp();
+          } else {
+            return const WelcomeScreen();
+          }
+        },
+      ),
       // RootApp(),
     );
   }

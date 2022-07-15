@@ -44,10 +44,10 @@ class _RootAppState extends State<RootApp> {
     LocalNotificationService.initialize(context);
 
     FirebaseMessaging.instance.requestPermission().then((value) {
-      print(value);
+      print('abc ' + value.toString());
     });
     FirebaseMessaging.instance.getToken().then((token) {
-      print(token);
+      //print('DeviceToken: ' + token.toString());
     });
     FirebaseMessaging.instance.getAPNSToken().then((APNStoken) {
       print(APNStoken);
