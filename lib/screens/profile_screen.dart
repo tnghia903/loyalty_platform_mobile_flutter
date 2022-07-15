@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileScreen extends StatefulWidget {
   final String? userDisplayName;
@@ -23,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print('access token ne: ${prefs.getString('accessToken')}');
     print('id token ne: ${prefs.getString('accountId')}');
+    print('DeviceId token ne: ${prefs.getString('deviceId')}');
   }
 
   @override
@@ -93,7 +97,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // },
                     onPressed: () async {
                       await FirebaseAuth.instance.signOut();
-                      Navigator.pop(context);
+
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await http.post(
+                        Uri.parse("http://13.232.213.53/api/v1/auth/logout"),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json',
+                        },
+                        body: jsonEncode(
+                          <String, String?>{
+                            'idToken': prefs.getString('idTokenGoogle'),
+                            'deviceId': prefs.getString('deviceId'),
+                          },
+                        ),
+                      );
                     },
                     style: ButtonStyle(
                       foregroundColor:
