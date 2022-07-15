@@ -79,8 +79,9 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
                         fontSize: 22,
                         color: Colors.purple[800],
                         fontWeight: FontWeight.w700),
+                    blankSpace: 90,
                     velocity: 50,
-                    pauseAfterRound: Duration(seconds: 2),
+                    pauseAfterRound: const Duration(seconds: 2),
                   ),
                 ),
                 const SizedBox(
