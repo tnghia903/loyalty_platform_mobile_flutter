@@ -8,6 +8,7 @@ import 'package:loyalty_platform_mobile_flutter/object/member_tier.dart';
 import 'package:loyalty_platform_mobile_flutter/object/membershipcurrency.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/profile_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/membership_currency_services.dart';
+import 'package:marquee/marquee.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,16 +71,16 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
               textDirection: TextDirection.ltr,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * .4,
-                  child: Text(
-                    name!,
-                    overflow: TextOverflow.fade,
-                    maxLines: 1,
-                    softWrap: false,
+                  width: MediaQuery.of(context).size.width * .35,
+                  height: 30,
+                  child: Marquee(
+                    text: name!,
                     style: TextStyle(
                         fontSize: 22,
                         color: Colors.purple[800],
                         fontWeight: FontWeight.w700),
+                    velocity: 50,
+                    pauseAfterRound: Duration(seconds: 2),
                   ),
                 ),
                 const SizedBox(
