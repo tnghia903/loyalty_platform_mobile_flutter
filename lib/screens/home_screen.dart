@@ -33,13 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     Future<void> _update() async {
       SharedPreferences pref = await SharedPreferences.getInstance();
 
       List response = await Future.wait([
         MemberTierServices().getMemberTier(),
-        MemberShipCurrencyService().getMemberShipCurrency()
+        MemberShipCurrencyService().getMemberShipCurrency(),
 
         // tier = response[0].name.toString();
         // point = response[1].pointsBalance.toString();
@@ -125,9 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           top: 10,
                                           left: 5),
                                       child: CustomPromotionPoint(
-
                                         update: _update,
-
                                         id: (snapshot.data as List)[index].id,
                                         effectiveDate:
                                             (snapshot.data as List)[index]
