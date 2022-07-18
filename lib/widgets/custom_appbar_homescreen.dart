@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:marquee/marquee.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/geolocator_services.dart';
 import '../services/member_tier_services.dart';
 import '../services/tier_services.dart';
 
@@ -26,33 +28,30 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
   String? point;
   String? tier;
 
-
   getInfomation() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
+    // SharedPreferences pref = await SharedPreferences.getInstance();
 
-    // List response = await Future.wait([
-    //   MemberTierServices().getMemberTier(),
-    //   MemberShipCurrencyService().getMemberShipCurrency()
-    // ]);
-
-
+    List response = await Future.wait([
+      MemberTierServices().getMemberTier(),
+      MemberShipCurrencyService().getMemberShipCurrency()
+    ]);
     setState(() {
-      // tier = response[0].name.toString();
-      // point = response[1].pointsBalance.toString();
-
-      tier = pref.getString('tier');
-      point = pref.getString('point');
+      tier = response[0].name.toString();
+      point = response[1].pointsBalance.toString();
     });
+
+    // tier = pref.getString('tier');
+    // point = pref.getString('point');
   }
 
   @override
   void initState() {
     super.initState();
+    getInfomation();
   }
 
   @override
   Widget build(BuildContext context) {
-    getInfomation();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
     final name = user?.displayName;
@@ -79,14 +78,14 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .35,
-                  height: 24,
+                  height: 28,
                   child: Marquee(
                     text: name!,
                     style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 20,
                         color: Colors.purple[800],
                         fontWeight: FontWeight.w700),
-                    blankSpace: 90,
+                    blankSpace: 30,
                     velocity: 50,
                     pauseAfterRound: const Duration(seconds: 2),
                   ),

@@ -13,6 +13,7 @@ import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.da
 import 'package:marquee/marquee.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/geolocator_services.dart';
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';

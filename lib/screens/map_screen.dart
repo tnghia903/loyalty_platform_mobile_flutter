@@ -1,58 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:loyalty_platform_mobile_flutter/models/place.dart';
 import 'package:provider/provider.dart';
 
+import '../models/place.dart';
 import '../services/geolocator_services.dart';
 import '../services/places_service.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreen extends StatelessWidget {
+  const MapScreen({super.key});
 
-  @override
-  State<MapScreen> createState() => _MapScreenState();
-}
-
-final locatorService = GeolocatorService();
-final placesService = PlacesService();
-
-class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
-    final currentPosition = Provider.of<Position?>(context);
-    final placesProvider = Provider.of<Future<List<Place>>?>(context);
     return MultiProvider(
       providers: [
         FutureProvider(
-          create: (context) => locatorService.getLocation(),
-          initialData: 42,
+          create: (context) => GeolocatorService().getLocation(),
+          initialData: null,
         ),
-        ProxyProvider<Position?, Future<List<Place>?>>(
-            update: (context, position, place) {
-          return (position != null)
-              ? placesService.getPlaces(position.latitude, position.longitude)
-              : placesService.getPlaces(0, 0);
-        })
+        ProxyProvider<Position, Future<List<Place>>>(
+          update: (context, position, places) {
+            return PlacesService()
+                .getPlaces(position.latitude, position.longitude);
+          },
+        )
       ],
-      child: FutureProvider(
-        create: (context) => placesProvider,
-        initialData: 42,
-        child: Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-              title: const Text('Tìm nhà hàng'),
-              elevation: 0,
-              backgroundColor: Colors.purple,
-              centerTitle: true,
-            ),
-            // ignore: unnecessary_null_comparison
-            body: (currentPosition != null)
-                ? Consumer<List<Place>?>(builder: (_, places, __) {
+      child: const MaterialApp(
+        home: GetScreen(),
+      ),
+    );
+  }
+}
+
+class GetScreen extends StatelessWidget {
+  const GetScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final currentPosition = Provider.of<Position?>(context);
+    if (currentPosition != null) {
+      final placeService = Provider.of<Future<List<Place>?>>(context);
+      // ignore: unnecessary_null_comparison
+      if (placeService != null) {
+        return FutureProvider(
+            lazy: false,
+            create: (context) => placeService,
+            initialData: const [],
+            child: Scaffold(
+                appBar: AppBar(
+                  leading: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+                  title: const Text('Tìm nhà hàng'),
+                  elevation: 0,
+                  backgroundColor: Colors.purple,
+                  centerTitle: true,
+                ),
+                body: Consumer<List<Place>>(
+                  builder: (context, places, child) {
                     return Column(
                       children: <Widget>[
                         SizedBox(
@@ -71,23 +78,48 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                         Expanded(
                             child: ListView.builder(
-                                itemCount: places?.length ?? 0,
+                                itemCount: places.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     child: ListTile(
                                       title: Text(
-                                        places![index].name,
+                                        places[index].name,
                                       ),
                                     ),
                                   );
                                 }))
                       ],
                     );
-                  })
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  )),
-      ),
-    );
+                  },
+                )));
+      } else {
+        return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+              title: const Text('Tìm nhà hàng'),
+              elevation: 0,
+              backgroundColor: Colors.purple,
+              centerTitle: true,
+            ),
+            body: const Center(child: CircularProgressIndicator()));
+      }
+    }
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+          title: const Text('Tìm nhà hàng'),
+          elevation: 0,
+          backgroundColor: Colors.purple,
+          centerTitle: true,
+        ),
+        body: const Center(child: CircularProgressIndicator()));
   }
 }

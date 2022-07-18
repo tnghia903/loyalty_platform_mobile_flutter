@@ -58,12 +58,10 @@ class CustomFunctionBar extends StatelessWidget {
                             icon: const Icon(Icons.near_me_sharp),
                             iconSize: 35,
                             color: Colors.purple[900],
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => (const MapScreen())),
-                              );
+                            onPressed: () async {
+                              await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const MapScreen()));
                             },
                           )),
                     ),

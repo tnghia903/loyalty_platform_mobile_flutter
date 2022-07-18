@@ -2,16 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:loyalty_platform_mobile_flutter/backgroundHandler.dart';
 import 'package:loyalty_platform_mobile_flutter/firebase_options.dart';
 import 'package:loyalty_platform_mobile_flutter/root_app.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/home_screen.dart';
+import 'package:loyalty_platform_mobile_flutter/screens/map_screen.dart';
 
 import 'package:loyalty_platform_mobile_flutter/screens/notification_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/welcome_screen.dart';
+import 'package:provider/provider.dart';
 
+import 'models/place.dart';
 import 'screens/home_screen.dart';
 import 'screens/welcome_screen.dart';
+import 'services/geolocator_services.dart';
+import 'services/places_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,6 +70,7 @@ class _MyAppState extends State<MyApp> {
         },
       ),
       // RootApp(),
+      // home: const MapScreen(),
     );
   }
 }
