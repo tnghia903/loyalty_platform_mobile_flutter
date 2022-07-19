@@ -62,7 +62,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
           width: MediaQuery.of(context).size.width,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
+              child: Image.network(
                 widget.thumbNail,
                 fit: BoxFit.fill,
               )),

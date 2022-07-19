@@ -114,7 +114,7 @@ class VoucherWallet extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Image.asset(wallet['image']),
+              child: Image.network(wallet['image']),
             ),
             Container(
               padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
