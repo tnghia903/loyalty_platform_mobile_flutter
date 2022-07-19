@@ -3,5 +3,7 @@ class Notification {
   final String tilte;
   final String description;
   final String datetime;
-  Notification(this.icon, this.tilte, this.description, this.datetime);
+  bool isRead;
+  Notification(
+      this.icon, this.tilte, this.description, this.datetime, this.isRead);
 }

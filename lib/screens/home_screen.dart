@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _update() async {
+    Future<void> updateScore() async {
       SharedPreferences pref = await SharedPreferences.getInstance();
 
       List response = await Future.wait([
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return RefreshIndicator(
       onRefresh: () async {
         setState(() {
-          _update();
+          updateScore();
         });
       },
       child: Scaffold(
