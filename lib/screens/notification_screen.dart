@@ -63,133 +63,144 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ),
                       ),
                       backgroundColor: Colors.white,
-                      body: SizedBox(
-                        height: MediaQuery.of(context).size.width * .85,
-                        child: ListView.builder(
-                          itemCount: (snapshot.data! as List).length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  (snapshot.data as List)[index].isRead = true;
-                                });
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 5, left: 5, bottom: 15),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.3,
-                                  decoration: BoxDecoration(
-                                      color: (snapshot.data as List)[index]
-                                                  .isRead ==
-                                              true
-                                          ? Colors.white
-                                          : colorContainer,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 1,
-                                          blurRadius: 5,
-                                          color: Colors.black.withOpacity(0.3),
-                                        ),
-                                      ],
-                                      border: Border.all(
-                                        color: Colors.black.withOpacity(0.2),
-                                        width: 0.1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/IconNotification.png',
-                                            scale: 4,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 15,
-                                              left: 10,
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .63,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          (snapshot.data as List)[
-                                                                      index]
-                                                                  .tilte ??
-                                                              'N/D'
-                                                                  .toUpperCase(),
-                                                          softWrap: false,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                          style: const TextStyle(
-                                                              fontSize: 15,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        (snapshot.data
-                                                                as List)[index]
-                                                            .datetime,
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: const TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .6,
-                                                  child: Text(
-                                                    (snapshot.data
-                                                                as List)[index]
-                                                            .description ??
-                                                        'N/D',
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 2,
-                                                    style: const TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.black),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                      body: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.width * .85,
+                          child: ListView.builder(
+                            itemCount: (snapshot.data! as List).length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    (snapshot.data as List)[index].isRead =
+                                        true;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 5, left: 5, bottom: 15),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    decoration: BoxDecoration(
+                                        color: (snapshot.data as List)[index]
+                                                    .isRead ==
+                                                true
+                                            ? Colors.white
+                                            : colorContainer,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            spreadRadius: 1,
+                                            blurRadius: 5,
+                                            color:
+                                                Colors.black.withOpacity(0.3),
                                           ),
                                         ],
-                                      )),
+                                        border: Border.all(
+                                          color: Colors.black.withOpacity(0.2),
+                                          width: 0.1,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/IconNotification.png',
+                                              scale: 4,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 15,
+                                                left: 10,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .63,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            (snapshot.data as List)[
+                                                                        index]
+                                                                    .tilte ??
+                                                                'N/D'
+                                                                    .toUpperCase(),
+                                                            softWrap: false,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            maxLines: 1,
+                                                            style: const TextStyle(
+                                                                fontSize: 15,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          (snapshot.data
+                                                                      as List)[
+                                                                  index]
+                                                              .datetime,
+                                                          overflow:
+                                                              TextOverflow.clip,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 12,
+                                                                  color: Colors
+                                                                      .black),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .6,
+                                                    child: Text(
+                                                      (snapshot.data as List)[
+                                                                  index]
+                                                              .description ??
+                                                          'N/D',
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 2,
+                                                      style: const TextStyle(
+                                                          fontSize: 15,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       )))
               : const Center(
