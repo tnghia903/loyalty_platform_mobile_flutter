@@ -13,6 +13,7 @@ import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.da
 import 'package:marquee/marquee.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/geolocator_services.dart';
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';
@@ -33,13 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    Future<void> _update() async {
+    Future<void> updateScore() async {
       SharedPreferences pref = await SharedPreferences.getInstance();
 
       List response = await Future.wait([
         MemberTierServices().getMemberTier(),
-        MemberShipCurrencyService().getMemberShipCurrency()
+        MemberShipCurrencyService().getMemberShipCurrency(),
 
         // tier = response[0].name.toString();
         // point = response[1].pointsBalance.toString();
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return RefreshIndicator(
       onRefresh: () async {
         setState(() {
-          _update();
+          updateScore();
         });
       },
       child: Scaffold(
@@ -125,9 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           top: 10,
                                           left: 5),
                                       child: CustomPromotionPoint(
-
                                         update: _update,
-
                                         id: (snapshot.data as List)[index].id,
                                         effectiveDate:
                                             (snapshot.data as List)[index]
