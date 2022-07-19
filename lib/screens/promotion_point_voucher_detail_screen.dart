@@ -43,7 +43,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
-                    child: Image.asset(
+                    child: Image.network(
                       items.thumbNail,
                       fit: BoxFit.fill,
                     ))),

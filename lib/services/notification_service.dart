@@ -19,6 +19,7 @@ class NotificationService {
     List<Notification> notifications = [];
     for (var i = 0; i < jsondata.length; i++) {
       Notification notification = Notification(
+        jsondata[i]['id'],
         'assets/images/IconNotification.png',
         jsondata[i]['title'],
         jsondata[i]['body'],
