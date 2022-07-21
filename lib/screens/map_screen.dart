@@ -20,11 +20,11 @@ class _CustomMarkerWithNetworkImageState
   @override
   bool get wantKeepAlive => true;
   List<String> images = [
-    'assets/images/LoyaltyProgram_logo(3).png',
-    'assets/images/LoyaltyProgram_logo(3).png',
-    'assets/images/LoyaltyProgram_logo(3).png',
-    'assets/images/LoyaltyProgram_logo(3).png',
-    'assets/images/LoyaltyProgram_logo(3).png',
+    'assets/images/LoyaltyProgram_marker-05.png',
+    'assets/images/LoyaltyProgram_marker-05.png',
+    'assets/images/LoyaltyProgram_marker-05.png',
+    'assets/images/LoyaltyProgram_marker-05.png',
+    'assets/images/LoyaltyProgram_marker-05.png',
   ];
   final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
@@ -81,7 +81,7 @@ class _CustomMarkerWithNetworkImageState
   loadData() async {
     for (int i = 0; i < images.length; i++) {
       final Uint8List markerIcon =
-          await getBytesFromAssets(images[i].toString(), 100);
+          await getBytesFromAssets(images[i].toString(), 150);
 
       _markers.add(Marker(
           markerId: MarkerId(i.toString()),

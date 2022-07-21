@@ -34,14 +34,14 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
       MemberTierServices().getMemberTier(),
       MemberShipCurrencyService().getMemberShipCurrency()
     ]);
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         tier = response[0].name.toString();
         point = response[1].pointsBalance.toString();
+        // tier = pref.getString('tier');
       });
     }
 
-    // tier = pref.getString('tier');
     // point = pref.getString('point');
   }
 

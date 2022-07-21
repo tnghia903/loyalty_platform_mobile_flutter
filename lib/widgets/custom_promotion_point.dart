@@ -169,6 +169,7 @@ class _CustomPromotionPointState extends State<CustomPromotionPoint> {
                         timeInSecForIosWeb: 1 // duration
                         );
                   }
+                  setState(() {});
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.purple,

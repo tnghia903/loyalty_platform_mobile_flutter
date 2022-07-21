@@ -9,7 +9,7 @@ class VoucherWalletService {
     String? membershipId = prefs.getString('accountId');
     String token = prefs.getString('accessToken').toString();
     var url = Uri.parse(
-        'http://13.232.213.53/api/v1/voucher-wallets/$membershipId?pageNumber=1&pageSize=10');
+        'http://13.232.213.53/api/v1/voucher-wallets/$membershipId?pageNumber=1&pageSize=100');
     final response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

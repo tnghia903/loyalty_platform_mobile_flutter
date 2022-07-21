@@ -147,18 +147,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     onTap: () {
                                       showModalBottomSheet(
-                                          context: context,
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(20),
-                                            ),
+                                        context: context,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20),
                                           ),
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          builder: (context) =>
-                                              PromotionPointVoucherDetailScreen(
-                                                  items: (snapshot.data
-                                                      as List)[index]));
+                                        ),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        builder: (context) =>
+                                            PromotionPointVoucherDetailScreen(
+                                          items: (snapshot.data as List)[index],
+                                          update: _update,
+                                        ),
+                                      );
                                     });
                               },
                             ),

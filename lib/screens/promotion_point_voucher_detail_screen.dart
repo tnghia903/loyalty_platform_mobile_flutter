@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loyalty_platform_mobile_flutter/object/promotion_point_vourcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class PromotionPointVoucherDetailScreen extends StatelessWidget {
-  const PromotionPointVoucherDetailScreen({Key? key, required this.items})
+import '../services/membership_currency_services.dart';
+import '../services/voucher_wallet_service.dart';
+
+class PromotionPointVoucherDetailScreen extends StatefulWidget {
+  const PromotionPointVoucherDetailScreen(
+      {Key? key, required this.items, required this.update})
       : super(key: key);
+  final Function update;
   final PromotionPointVoucher items;
+
+  @override
+  State<PromotionPointVoucherDetailScreen> createState() =>
+      _PromotionPointVoucherDetailScreenState();
+}
+
+class _PromotionPointVoucherDetailScreenState
+    extends State<PromotionPointVoucherDetailScreen> {
+  Future<bool> checkPoint() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? point = prefs.getString('point');
+    return int.parse(point!) >= int.parse(widget.items.point.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +65,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
                     child: Image.network(
-                      items.thumbNail,
+                      widget.items.thumbNail,
                       fit: BoxFit.fill,
                     ))),
           ),
@@ -57,7 +78,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: Row(
                     children: [
-                      Text(items.title,
+                      Text(widget.items.title,
                           textAlign: TextAlign.justify,
                           overflow: TextOverflow.clip,
                           textDirection: TextDirection.ltr,
@@ -70,7 +91,7 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Text(items.description,
+                  child: Text(widget.items.description,
                       textAlign: TextAlign.justify,
                       overflow: TextOverflow.clip,
                       textDirection: TextDirection.ltr,
@@ -90,7 +111,36 @@ class PromotionPointVoucherDetailScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16))),
                       child: const Text('Đổi ngay'),
-                      onPressed: () {},
+                      onPressed: () async {
+                        bool check = await checkPoint();
+                        if (check) {
+                          VoucherWalletService()
+                              .addVoucherInWallet(widget.items.id);
+                          SharedPreferences pref =
+                              await SharedPreferences.getInstance();
+                          List response = await Future.wait([
+                            MemberShipCurrencyService().getMemberShipCurrency()
+                          ]);
+                          pref.setString(
+                              'point', response[0].pointsBalance.toString());
+                          widget.update();
+                          Fluttertoast.showToast(
+                              msg: "Đổi thành công", // message
+                              toastLength: Toast.LENGTH_SHORT, // length
+                              gravity: ToastGravity.BOTTOM, // location
+                              timeInSecForIosWeb: 1 // duration
+                              );
+                          print(pref.getString('point'));
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Bạn không đủ điểm", // message
+                              toastLength: Toast.LENGTH_SHORT, // length
+                              gravity: ToastGravity.BOTTOM, // location
+                              timeInSecForIosWeb: 1 // duration
+                              );
+                        }
+                        setState(() {});
+                      },
                     ),
                   ),
                 )
