@@ -3,6 +3,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:loyalty_platform_mobile_flutter/object/membershipcurrency.dart';
 import 'package:loyalty_platform_mobile_flutter/services/membership_currency_services.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_tier_detail_information.dart';
+import 'package:primary_secondary_progress_bar/primary_secondary_progress_bar.dart';
 
 class MemberDetailScreen extends StatefulWidget {
   const MemberDetailScreen({super.key});
@@ -11,11 +12,45 @@ class MemberDetailScreen extends StatefulWidget {
   State<MemberDetailScreen> createState() => _MemberDetailScreenState();
 }
 
+checkTextColors(int point, String text) {
+  if (text == 'Tier 1') {
+    if (point >= 0 && point <= 300) {
+      return Colors.purple;
+    } else {
+      return Colors.black;
+    }
+  } else if (text == 'Tier 2') {
+    if (point >= 301 && point <= 500) {
+      return Colors.purple;
+    } else {
+      return Colors.black;
+    }
+  } else if (text == 'Tier 3') {
+    if (point >= 501 && point <= 1000) {
+      return Colors.purple;
+    } else {
+      return Colors.black;
+    }
+  } else if (text == 'Tier 4') {
+    if (point >= 1001 && point <= 2000) {
+      return Colors.purple;
+    } else {
+      return Colors.black;
+    }
+  } else {
+    if (point >= 2001) {
+      return Colors.purple;
+    } else {
+      return Colors.black;
+    }
+  }
+}
+
 checkPoint(double point) {
-  if (point > 60) {
+  if (point > 2000) {
     return 1.toDouble();
   } else {
-    return ((point * 100) / 60) / 100;
+    return ((point * 100) / 2000) / 100;
   }
 }
 
@@ -91,16 +126,86 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 20, right: 20, top: 16),
-                                  child: GFProgressBar(
-                                    percentage: checkPoint(
-                                        (snapshot.data as MemberShipCurrency)
+                                      left: 20, right: 20, top: 20),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'T1',
+                                            style: TextStyle(
+                                                color: checkTextColors(
+                                                    (snapshot.data
+                                                            as MemberShipCurrency)
+                                                        .totalPointsAccrued,
+                                                    'Tier 1')),
+                                          ),
+                                          const SizedBox(
+                                            width: 30,
+                                          ),
+                                          Text(
+                                            'T2',
+                                            style: TextStyle(
+                                                color: checkTextColors(
+                                                    (snapshot.data
+                                                            as MemberShipCurrency)
+                                                        .totalPointsAccrued,
+                                                    'Tier 2')),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'T3',
+                                            style: TextStyle(
+                                                color: checkTextColors(
+                                                    (snapshot.data
+                                                            as MemberShipCurrency)
+                                                        .totalPointsAccrued,
+                                                    'Tier 3')),
+                                          ),
+                                          const SizedBox(
+                                            width: 46,
+                                          ),
+                                          Text(
+                                            'T4',
+                                            style: TextStyle(
+                                                color: checkTextColors(
+                                                    (snapshot.data
+                                                            as MemberShipCurrency)
+                                                        .totalPointsAccrued,
+                                                    'Tier 4')),
+                                          ),
+                                          const SizedBox(
+                                            width: 113,
+                                          ),
+                                          Text(
+                                            'T5',
+                                            style: TextStyle(
+                                                color: checkTextColors(
+                                                    (snapshot.data
+                                                            as MemberShipCurrency)
+                                                        .totalPointsAccrued,
+                                                    'Tier 5')),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      GFProgressBar(
+                                        animateFromLastPercentage: true,
+                                        percentage: checkPoint((snapshot.data
+                                                as MemberShipCurrency)
                                             .totalPointsAccrued
                                             .toDouble()),
-                                    lineHeight: 16,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    backgroundColor: Colors.grey.shade200,
-                                    progressBarColor: Colors.purple,
+                                        lineHeight: 16,
+                                        alignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        backgroundColor: Colors.grey.shade200,
+                                        progressBarColor: Colors.purple,
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const Padding(

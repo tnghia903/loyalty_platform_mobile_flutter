@@ -15,20 +15,26 @@ class NotificationService {
         Uri.parse(
             'http://13.232.213.53/api/v1/notification?accountId=$memberId'),
         headers: {HttpHeaders.authorizationHeader: "Bearer $accessToken"});
-    var jsondata = json.decode(response.body);
     List<Notification> notifications = [];
-    for (var i = 0; i < jsondata.length; i++) {
-      Notification notification = Notification(
-        jsondata[i]['id'],
-        'assets/images/IconNotification.png',
-        jsondata[i]['title'],
-        jsondata[i]['body'],
-        jsondata[i]['date'],
-        jsondata[i]['isRead'],
-      );
-      notifications.add(notification);
-    }
+    if (response.statusCode == 200) {
+      var jsondata = json.decode(response.body);
 
-    return notifications;
+      for (var i = 0; i < jsondata.length; i++) {
+        Notification notification = Notification(
+          jsondata[i]?['id'],
+          'assets/images/IconNotification.png',
+          jsondata[i]?['title'],
+          jsondata[i]?['body'],
+          jsondata[i]?['date'],
+          jsondata[i]?['isRead'],
+        );
+        notifications.add(notification);
+      }
+      return notifications;
+    } else if (response.statusCode == 400) {
+      return notifications;
+    } else {
+      throw Exception("Invalid response");
+    }
   }
 }

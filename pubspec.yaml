@@ -54,6 +54,9 @@ dependencies:
   getwidget: ^3.0.1
 
   fluttertoast: ^8.0.9
+  flutter_hooks: ^0.18.5+1
+  primary_secondary_progress_bar: ^0.3.0
+  custom_info_window: ^1.0.1
 
 
 dev_dependencies:
