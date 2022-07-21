@@ -107,14 +107,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Text(
                     'Email người giới thiệu : ${checkAldready(emailreference)}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   Text('Mã giới thiệu : $code',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(
                     height: 24,
                   ),
