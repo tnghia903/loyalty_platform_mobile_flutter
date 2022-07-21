@@ -47,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   //   try {
   //     await FirebaseAuth.instance.signInAnonymously();
   //   } catch (e) {
-  //     print(e); // TODO: show dialog with error
+  //     print(e);
   //   }
   // }
 
@@ -101,8 +101,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               child: CircularProgressIndicator(),
                             );
                           }));
-                      SharedPreferences pref =
-                          await SharedPreferences.getInstance();
+
                       // Obtain shared preferences.
 
                       FirebaseAuth.instance
@@ -113,38 +112,36 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           print('User is currently signed out!');
                         } else {
                           print(user.uid);
-                          print(
-                              'goi api ne ${pref.getString('idTokenGoogle')}');
-                          final response = await http.post(
-                            Uri.parse("http://13.232.213.53/api/v1/auth/login"),
-                            headers: <String, String>{
-                              'Content-Type': 'application/json',
-                            },
-                            body: jsonEncode(
-                              <String, String?>{
-                                'idToken': pref.getString('idTokenGoogle'),
-                                'deviceId': pref.getString('deviceId'),
-                              },
-                            ),
-                          );
 
-                          if (response.statusCode == 200) {
-                            print(
-                                'response login ne: ${jsonDecode(response.body)}');
-                            String accessToken =
-                                jsonDecode(response.body)['token'];
-                            pref.setString('accessToken', accessToken);
-                            int accountId =
-                                jsonDecode(response.body)['accountId'];
-                            pref.setString('accountId', accountId.toString());
-                            String point =
-                                jsonDecode(response.body)['point'].toString();
-                            pref.setString('point', point);
-                            String tier = jsonDecode(response.body)['tier'];
-                            pref.setString('tier', tier.toString());
-                          } else {
-                            print('hong co duoc: ${jsonDecode(response.body)}');
-                          }
+                          // final response = await http.post(
+                          //   Uri.parse("http://13.232.213.53/api/v1/auth/login"),
+                          //   headers: <String, String>{
+                          //     'Content-Type': 'application/json',
+                          //   },
+                          //   body: jsonEncode(
+                          //     <String, String?>{
+                          //       'idToken': pref.getString('idTokenGoogle'),
+                          //       'deviceId': pref.getString('deviceId'),
+                          //     },
+                          //   ),
+                          // );
+                          // if (response.statusCode == 200) {
+                          //   print(
+                          //       'response login ne: ${jsonDecode(response.body)}');
+                          //   String accessToken =
+                          //       jsonDecode(response.body)['token'];
+                          //   pref.setString('accessToken', accessToken);
+                          //   int accountId =
+                          //       jsonDecode(response.body)['accountId'];
+                          //   pref.setString('accountId', accountId.toString());
+                          //   String point =
+                          //       jsonDecode(response.body)['point'].toString();
+                          //   pref.setString('point', point);
+                          //   String tier = jsonDecode(response.body)['tier'];
+                          //   pref.setString('tier', tier.toString());
+                          // } else {
+                          //   print('hong co duoc: ${jsonDecode(response.body)}');
+                          // }
                         }
                       });
                       navigatorKey.currentState!

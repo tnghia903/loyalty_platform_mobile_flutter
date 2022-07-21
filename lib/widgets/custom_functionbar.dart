@@ -9,7 +9,7 @@ class CustomFunctionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List tilte = [
-      "Tìm Nhà Hàng",
+      "Tìm Cửa Hàng",
       "Thương Hiệu",
       "Ví Voucher",
     ];
@@ -59,9 +59,9 @@ class CustomFunctionBar extends StatelessWidget {
                             iconSize: 35,
                             color: Colors.purple[900],
                             onPressed: () async {
-                              await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => const MapScreen()));
+                              await Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CustomMarkerWithNetworkImage()));
                             },
                           )),
                     ),

@@ -13,7 +13,6 @@ import 'package:marquee/marquee.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/geolocator_services.dart';
 import '../services/member_tier_services.dart';
 import '../services/tier_services.dart';
 
@@ -35,19 +34,15 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
       MemberTierServices().getMemberTier(),
       MemberShipCurrencyService().getMemberShipCurrency()
     ]);
-    setState(() {
-      tier = response[0].name.toString();
-      point = response[1].pointsBalance.toString();
-    });
+    if (this.mounted) {
+      setState(() {
+        tier = response[0].name.toString();
+        point = response[1].pointsBalance.toString();
+      });
+    }
 
     // tier = pref.getString('tier');
     // point = pref.getString('point');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getInfomation();
   }
 
   @override
@@ -56,6 +51,7 @@ class _CustomAppBarHomeScreenState extends State<CustomAppBarHomeScreen> {
     final User? user = auth.currentUser;
     final name = user?.displayName;
     final avatarUrl = user?.photoURL;
+    getInfomation();
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20),
       child: Row(

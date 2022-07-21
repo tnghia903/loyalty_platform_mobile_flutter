@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_news_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/screens/promotion_point_voucher_detail_screen.dart';
 import 'package:loyalty_platform_mobile_flutter/services/member_tier_services.dart';
@@ -10,10 +11,8 @@ import 'package:loyalty_platform_mobile_flutter/widgets/custom_appbar_homescreen
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_card_member.dart';
 import 'package:loyalty_platform_mobile_flutter/widgets/custom_promotion_news.dart';
 
-import 'package:marquee/marquee.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/geolocator_services.dart';
 import '../services/promotion_point_service.dart';
 import '../widgets/custom_functionbar.dart';
 import '../widgets/custom_promotion_point.dart';
@@ -24,6 +23,9 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+String? point;
+String? tier;
 
 class _HomeScreenState extends State<HomeScreen> {
   int _count = 0;
@@ -40,10 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
       List response = await Future.wait([
         MemberTierServices().getMemberTier(),
         MemberShipCurrencyService().getMemberShipCurrency(),
-
         // tier = response[0].name.toString();
         // point = response[1].pointsBalance.toString();
       ]);
+
       pref.setString('point', response[1].pointsBalance.toString());
       pref.setString('tier', response[0].name.toString());
     }

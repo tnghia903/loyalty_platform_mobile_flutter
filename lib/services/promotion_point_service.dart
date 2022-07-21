@@ -13,16 +13,18 @@ class PromotionVoucherService {
     List<PromotionPointVoucher> vouchers = [];
 
     for (var i = 0; i < jsondata.length; i++) {
-      PromotionPointVoucher voucher = PromotionPointVoucher(
-        jsondata[i]['id'],
-        jsondata[i]['image'],
-        jsondata[i]['description'],
-        jsondata[i]['effectiveDate'],
-        jsondata[i]['expirationDate'],
-        jsondata[i]['point'],
-        jsondata[i]['name'],
-      );
-      vouchers.add(voucher);
+      if (jsondata[i]['point'] != 0) {
+        PromotionPointVoucher voucher = PromotionPointVoucher(
+          jsondata[i]['id'],
+          jsondata[i]['image'],
+          jsondata[i]['description'],
+          jsondata[i]['effectiveDate'],
+          jsondata[i]['expirationDate'],
+          jsondata[i]['point'],
+          jsondata[i]['name'],
+        );
+        vouchers.add(voucher);
+      }
     }
 
     return vouchers;

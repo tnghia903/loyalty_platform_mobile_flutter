@@ -12,9 +12,9 @@ class BrandDetailScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-        title: const Text('Passio'),
+        title: const Text('Loyalty Program Coffee'),
         elevation: 0,
-        backgroundColor: Colors.lightGreen.shade600,
+        backgroundColor: Colors.purple.shade600,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -24,21 +24,15 @@ class BrandDetailScreen extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 30),
-                child: Container(
-                  width: 90,
-                  height: 90,
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            offset: const Offset(0, 2),
-                            blurRadius: 2,
-                            color: Colors.black26.withOpacity(0.3))
-                      ],
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white),
-                  child: Image.asset(
-                    'assets/images/LogoPassio.png',
-                    scale: 20,
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(
+                      'assets/images/LoyaltyProgram_logo(2).png',
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
@@ -54,7 +48,7 @@ class BrandDetailScreen extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(17),
                       child: Image.asset(
-                        'assets/images/PassioBrandDetail.jpg',
+                        'assets/images/BrandDetail.jpg',
                         fit: BoxFit.fill,
                       ))),
             ),
@@ -66,7 +60,7 @@ class BrandDetailScreen extends StatelessWidget {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: const Text(
-                  'Passio Coffee là thương hiệu tiên phong trong phong cách “to go” – cafe mang đi tại Việt Nam. Trải qua hơn một thập kỷ hình thành và phát triển, Passio Coffee là lựa chọn lý tưởng của những “tín đồ cafe”. Quyến rũ nhưng cũng rất tao nhã, truyền thống nhưng không kém phần hiện đại, Passio Coffee mong muốn khách hàng sẽ khám phá được sự liên kết đặc biệt trong từng nguyên liệu đã làm nên ly thức uống tuyệt hảo chứ không đơn thuần chỉ là thưởng thức một sản phẩm cafe.',
+                  'Sài Gòn tấp nập, xô bồ, đôi khi cần lắm một phút giây yên bình. Tìm đến một quán nước nhỏ nhắn, âm nhạc nhẹ nhàng, say sưa cùng với vài trang sách. Vậy là đủ cho một ngày cuối tuần. Nếu đó là những điều bạn tìm kiếm thì Loyalty Program Coffee là không gian lý tưởng cho bạn đấy.',
                   style: TextStyle(
                     fontSize: 15,
                   ),
